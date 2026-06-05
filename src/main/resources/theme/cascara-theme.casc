@@ -1,0 +1,1293 @@
+projectModule: cascara.module.theme
+name: "cascara-vscode-theme"
+uuid: "e6e0ad8c-3eb4-48ea-9639-8968b7bcb34e"
+variations:
+  -
+    name: "Cascara OG"
+    path: "themes/cascara-og.json"
+    baseColors:
+    transforms:
+    paletteColors:
+      accentBackground:
+        name: "<name>"
+        hexColor: "#494386"
+      accentForeground:
+        name: "<name>"
+        hexColor: "#EAD9C7"
+      controlBackground:
+        name: "<name>"
+        hexColor: "#27252A"
+      controlForeground:
+        name: "<name>"
+        hexColor: "#9B8C79"
+      documentBackground:
+        name: "<name>"
+        hexColor: "#1D1922"
+      emptyBackground:
+        name: "<name>"
+        hexColor: "#231E29"
+      textForeground:
+        name: "<name>"
+        hexColor: "#C6C2C1"
+      markForeground:
+        name: "<name>"
+        hexColor: "#C6C2C1"
+    uiColors:
+      foreground:
+        name: "foreground"
+        hexColor: "#9E9DA0"
+      focusBorder:
+        name: "focusBorder"
+        hexColor: "#3F3544"
+      selectionBackground:
+        name: "selectionBackground"
+        hexColor: "#342B33"
+      iconForeground:
+        name: "iconForeground"
+        hexColor: "#9E9DA0"
+      activitybarInactiveForeground:
+        name: "activitybarInactiveForeground"
+        hexColor: "#9B8C79"
+      activitybarInactiveBackground:
+        name: "activitybarInactiveBackground"
+        hexColor: "#27252A"
+      activitybarActiveBackground:
+        name: "activitybarActiveBackground"
+        hexColor: "#27252A"
+      activitybarActiveForeground:
+        name: "activitybarActiveForeground"
+        hexColor: "#5850A2"
+      activitybarBadgeBackground:
+        name: "activitybarBadgeBackground"
+        hexColor: "#5850A2"
+      activitybarBadgeForeground:
+        name: "activitybarBadgeForeground"
+        hexColor: "#C6C2C1"
+      activitybarToggledBackground:
+        name: "activitybarToggledBackground"
+        hexColor: "#3F3544"
+      activitybarActiveBorder:
+        name: "activitybarActiveBorder"
+        hexColor: "#5850A2"
+      activitybarDropBorder:
+        name: "activitybarDropBorder"
+        hexColor: "#5850A2"
+      activitybartopActiveBorder:
+        name: "activitybartopActiveBorder"
+        hexColor: "#E7E7E7"
+      activitybartopDropBorder:
+        name: "activitybartopDropBorder"
+        hexColor: "#E7E7E7"
+      activitybartopActiveForeground:
+        name: "activitybartopActiveForeground"
+        hexColor: "#E7E7E7"
+      activitybartopInactiveForeground:
+        name: "activitybartopInactiveForeground"
+        hexColor: "#E7E7E7"
+      activitybarErrorbadgeBackground:
+        name: "activitybarErrorbadgeBackground"
+        hexColor: "#F14C4C"
+      activitybarErrorbadgeForeground:
+        name: "activitybarErrorbadgeForeground"
+        hexColor: "#000000"
+      activitybarWarningbadgeBackground:
+        name: "activitybarWarningbadgeBackground"
+        hexColor: "#CCA700"
+      activitybarWarningbadgeForeground:
+        name: "activitybarWarningbadgeForeground"
+        hexColor: "#000000"
+      badgeInfoBackground:
+        name: "badgeInfoBackground"
+        hexColor: "#5850A2"
+      badgeInfoForeground:
+        name: "badgeInfoForeground"
+        hexColor: "#E7E7E7"
+      badgeErrorBackground:
+        name: "badgeErrorBackground"
+        hexColor: "#F14C4C"
+      badgeErrorForeground:
+        name: "badgeErrorForeground"
+        hexColor: "#E7E7E7"
+      badgeWarnBackground:
+        name: "badgeWarnBackground"
+        hexColor: "#CCA700"
+      badgeWarnForeground:
+        name: "badgeWarnForeground"
+        hexColor: "#000000"
+      buttonBackground:
+        name: "buttonBackground"
+        hexColor: "#494386"
+      buttonForeground:
+        name: "buttonForeground"
+        hexColor: "#EAD9C7"
+      buttonHoverBackground:
+        name: "buttonHoverBackground"
+        hexColor: "#5E57B0"
+      checkboxBorder:
+        name: "checkboxBorder"
+        hexColor: "#6B6B6B"
+      checkboxBackground:
+        name: "checkboxBackground"
+        hexColor: "#3C3C3C"
+      checkboxDisabledBackground:
+        name: "checkboxDisabledBackground"
+        hexColor: "#777777"
+      checkboxDisabledForeground:
+        name: "checkboxDisabledForeground"
+        hexColor: "#B4B4B4"
+      checkboxForeground:
+        name: "checkboxForeground"
+        hexColor: "#F0F0F0"
+      checkboxSelectedBackground:
+        name: "checkboxSelectedBackground"
+        hexColor: "#252526"
+      checkboxSelectedBorder:
+        name: "checkboxSelectedBorder"
+        hexColor: "#9E9DA0"
+      documentAreaHeaderNoTabsBackground:
+        name: "documentAreaHeaderNoTabsBackground"
+        hexColor: "#27252A"
+      documentAreaHeaderTabsBackground:
+        name: "documentAreaHeaderTabsBackground"
+        hexColor: "#27252A"
+      disabledForeground:
+        name: "disabledForeground"
+        hexColor: "#CCCCCC"
+      dropdownBackground:
+        name: "dropdownBackground"
+        hexColor: "#3C3C3C"
+      dropdownForeground:
+        name: "dropdownForeground"
+        hexColor: "#3C3C3C"
+      dropdownBorder:
+        name: "dropdownBorder"
+        hexColor: "#F0F0F0"
+      editorBackground:
+        name: "editorBackground"
+        hexColor: "#1D1922"
+      editorForeground:
+        name: "editorForeground"
+        hexColor: "#C6C2C1"
+      editorIndentGuideActiveBackground:
+        name: "editorIndentGuideActiveBackground"
+        hexColor: "#707070"
+      editorIndentGuideInactiveBackground:
+        name: "editorIndentGuideInactiveBackground"
+        hexColor: "#404040"
+      editorSelectionActiveBackground:
+        name: "editorSelectionActiveBackground"
+        hexColor: "#342B33"
+      editorSelectionForeground:
+        name: "editorSelectionForeground"
+        hexColor: "#E0CAA9"
+      editorSelectionInactiveBackground:
+        name: "editorSelectionInactiveBackground"
+        hexColor: "#3A3D41"
+      editorMatchBackground:
+        name: "editorMatchBackground"
+        hexColor: "#1D1922"
+      editorMatchForeground:
+        name: "editorMatchForeground"
+        hexColor: "#E0CAA9"
+      editorMatchBorder:
+        name: "editorMatchBorder"
+        hexColor: "#E0CAA9"
+      editorMatchHighlightBackground:
+        name: "editorMatchHighlightBackground"
+        hexColor: "#494386"
+      editorErrorForeground:
+        name: "editorErrorForeground"
+        hexColor: "#ff4d4d"
+      editorWarnForeground:
+        name: "editorWarnForeground"
+        hexColor: "#ffb84d"
+      editorInfoForeground:
+        name: "editorInfoForeground"
+        hexColor: "#4da6ff"
+      editorMatchHighlightForeground:
+        name: "editorMatchHighlightForeground"
+        hexColor: "#E0CAA9"
+      gitdecorationUntrackedForeground:
+        name: "gitdecorationUntrackedForeground"
+        hexColor: "#7067B5"
+      gitdecorationModifiedForeground:
+        name: "gitdecorationModifiedForeground"
+        hexColor: "#7067B5"
+      inputForeground:
+        name: "inputForeground"
+        hexColor: "#C6C2C1"
+      inputPlaceholderForeground:
+        name: "inputPlaceholderForeground"
+        hexColor: "#A6A6A6"
+      inputBackground:
+        name: "inputBackground"
+        hexColor: "#231E29"
+      inputBorder:
+        name: "inputBorder"
+        hexColor: "#231E29"
+      linkInactiveForeground:
+        name: "linkInactiveForeground"
+        hexColor: "#E0CAA9"
+      linkActiveForeground:
+        name: "linkActiveForeground"
+        hexColor: "#E0CAA9"
+      listFocusBackground:
+        name: "listFocusBackground"
+        hexColor: "#27252A"
+      listFocusForeground:
+        name: "listFocusForeground"
+        hexColor: "#EAD9C7"
+      listSelectionActiveBackground:
+        name: "listSelectionActiveBackground"
+        hexColor: "#494386"
+      listSelectionActiveForeground:
+        name: "listSelectionActiveForeground"
+        hexColor: "#EAD9C7"
+      listFocusOutline:
+        name: "listFocusOutline"
+        hexColor: "#5850A2"
+      listSelectionFocusOutline:
+        name: "listSelectionFocusOutline"
+        hexColor: "#5850A2"
+      listSelectionInactiveBackground:
+        name: "listSelectionInactiveBackground"
+        hexColor: "#27252A"
+      listSelectionInactiveForeground:
+        name: "listSelectionInactiveForeground"
+        hexColor: "#E0CAA9"
+      listHoverBackground:
+        name: "listHoverBackground"
+        hexColor: "#27252A"
+      listWarningForeground:
+        name: "listWarningForeground"
+        hexColor: "#E0CAA9"
+      listSelectionActiveIconForeground:
+        name: "listSelectionActiveIconForeground"
+        hexColor: "#FFFFFF"
+      listDropBackground:
+        name: "listDropBackground"
+        hexColor: "#383B3D"
+      menuBarSelectionBackground:
+        name: "menuBarSelectionBackground"
+        hexColor: "#5850A2"
+      menuBarSelectionForeground:
+        name: "menuBarSelectionForeground"
+        hexColor: "#EAD9C7"
+      menuBorder:
+        name: "menuBorder"
+        hexColor: "#3A373B"
+      menuForeground:
+        name: "menuForeground"
+        hexColor: "#EAD9C7"
+      menuBackground:
+        name: "menuBackground"
+        hexColor: "#27252A"
+      menuSelectionForeground:
+        name: "menuSelectionForeground"
+        hexColor: "#EAD9C7"
+      menuSelectionBackground:
+        name: "menuSelectionBackground"
+        hexColor: "#5850A2"
+      menuSelectionBorder:
+        name: "menuSelectionBorder"
+        hexColor: "#5850A2"
+      menuSeparatorBackground:
+        name: "menuSeparatorBackground"
+        hexColor: "#3A373B"
+      notificationBackground:
+        name: "notificationBackground"
+        hexColor: "#231E29"
+      notificationForeground:
+        name: "notificationForeground"
+        hexColor: "#9E9DA0"
+      notificationBorder:
+        name: "notificationBorder"
+        hexColor: "#3F3544"
+      notificationLink:
+        name: "notificationLink"
+        hexColor: "#E0CAA9"
+      notificationIconInfo:
+        name: "notificationIconInfo"
+        hexColor: "#9E9DA0"
+      notificationIconError:
+        name: "notificationIconError"
+        hexColor: "#F14C4C"
+      notificationIconWarning:
+        name: "notificationIconWarning"
+        hexColor: "#CCA700"
+      panelBackground:
+        name: "panelBackground"
+        hexColor: "#1D1922"
+      portsIconRunningProcessForeground:
+        name: "portsIconRunningProcessForeground"
+        hexColor: "#369432"
+      radioActiveBackground:
+        name: "radioActiveBackground"
+        hexColor: "#3F3544"
+      radioActiveBorder:
+        name: "radioActiveBorder"
+        hexColor: "#007ACC"
+      radioActiveForeground:
+        name: "radioActiveForeground"
+        hexColor: "#FFFFFF"
+      radioInactiveBorder:
+        name: "radioInactiveBorder"
+        hexColor: "#FFFFFF"
+      radioInactiveHoverBackground:
+        name: "radioInactiveHoverBackground"
+        hexColor: "#5A5D5E"
+      scrollThumbBackground:
+        name: "scrollThumbBackground"
+        hexColor: "#2F2947"
+      scrollThumbHoverBackground:
+        name: "scrollThumbHoverBackground"
+        hexColor: "#494386"
+      scrollThumbActiveBackground:
+        name: "scrollThumbActiveBackground"
+        hexColor: "#2F2947"
+      scrollShadow:
+        name: "scrollShadow"
+        hexColor: "#2F2947"
+      sidebarBackground:
+        name: "sidebarBackground"
+        hexColor: "#231E29"
+      sidebarForeground:
+        name: "sidebarForeground"
+        hexColor: "#9E9DA0"
+      sidebarDropBackground:
+        name: "sidebarDropBackground"
+        hexColor: "#553067"
+      sidebarBorder:
+        name: "sidebarBorder"
+        hexColor: "#3F3544"
+      sidebarTitleForeground:
+        name: "sidebarTitleForeground"
+        hexColor: "#9B8C79"
+      sidebarTitleBackground:
+        name: "sidebarTitleBackground"
+        hexColor: "#27252A"
+      sidebarHeaderBackground:
+        name: "sidebarHeaderBackground"
+        hexColor: "#27252A"
+      sidebarHeaderForeground:
+        name: "sidebarHeaderForeground"
+        hexColor: "#9E9DA0"
+      sidebarHeaderBorder:
+        name: "sidebarHeaderBorder"
+        hexColor: "#27252A"
+      statusbarBackground:
+        name: "statusbarBackground"
+        hexColor: "#27252A"
+      statusbarForeground:
+        name: "statusbarForeground"
+        hexColor: "#9B8C79"
+      statusbarNofolderBackground:
+        name: "statusbarNofolderBackground"
+        hexColor: "#3A373B"
+      statusbarDebuggingBackground:
+        name: "statusbarDebuggingBackground"
+        hexColor: "#4D468D"
+      statusbarDebuggingForeground:
+        name: "statusbarDebuggingForeground"
+        hexColor: "#EAD9C7"
+      statusbarItemRemoteBackground:
+        name: "statusbarItemRemoteBackground"
+        hexColor: "#27252A"
+      statusbarItemRemoteForeground:
+        name: "statusbarItemRemoteForeground"
+        hexColor: "#9B8C79"
+      statusbarItemRemoteHoverBackground:
+        name: "statusbarItemRemoteHoverBackground"
+        hexColor: "#494386"
+      statusbarItemRemoteHoverForeground:
+        name: "statusbarItemRemoteHoverForeground"
+        hexColor: "#E0CAA9"
+      statusbarItemHoverBackground:
+        name: "statusbarItemHoverBackground"
+        hexColor: "#494386"
+      statusbarItemHoverForeground:
+        name: "statusbarItemHoverForeground"
+        hexColor: "#E0CAA9"
+      tabActiveBackground:
+        name: "tabActiveBackground"
+        hexColor: "#1D1922"
+      tabActiveBorder:
+        name: "tabActiveBorder"
+        hexColor: "#1D1922"
+      tabActiveForeground:
+        name: "tabActiveForeground"
+        hexColor: "#E0CAA9"
+      tabInactiveBackground:
+        name: "tabInactiveBackground"
+        hexColor: "#27252A"
+      tabInactiveForeground:
+        name: "tabInactiveForeground"
+        hexColor: "#9E9DA0"
+      tabSelectedBackground:
+        name: "tabSelectedBackground"
+        hexColor: "#222222"
+      tabSelectedBorderTop:
+        name: "tabSelectedBorderTop"
+        hexColor: "#E0CAA9"
+      tabSelectedForeground:
+        name: "tabSelectedForeground"
+        hexColor: "#FFFFFF"
+      tabLastPinnedBorder:
+        name: "tabLastPinnedBorder"
+        hexColor: "#1D1922"
+      terminalSelectionInactiveBackground:
+        name: "terminalSelectionInactiveBackground"
+        hexColor: "#3A3D41"
+      titlebarActiveForeground:
+        name: "titlebarActiveForeground"
+        hexColor: "#E0CAA9"
+      titlebarActiveBackground:
+        name: "titlebarActiveBackground"
+        hexColor: "#3A373B"
+      titlebarInactiveBackground:
+        name: "titlebarInactiveBackground"
+        hexColor: "#27252A"
+      welcomepageBackground:
+        name: "welcomepageBackground"
+        hexColor: "#1D1922"
+      widgetBorder:
+        name: "widgetBorder"
+        hexColor: "#303031"
+      widgetShadow:
+        name: "widgetShadow"
+        hexColor: "#000000"
+      tooltipBorder:
+        name: "tooltipBorder"
+        hexColor: "#3A373B"
+    codeColors:
+      variable:
+        name: "<name>"
+        hexColor: "#A0D0EA"
+      primitive_type:
+        name: "<name>"
+        hexColor: "#BBDABF"
+      comment:
+        name: "<name>"
+        hexColor: "#5D50A6"
+      keyword:
+        name: "<name>"
+        hexColor: "#D0ADCD"
+      modifier:
+        name: "<name>"
+        hexColor: "#867C97"
+      constant:
+        name: "<name>"
+        hexColor: "#5BB0FF"
+      operator:
+        name: "<name>"
+        hexColor: "#C6C2C1"
+      string:
+        name: "<name>"
+        hexColor: "#EFC396"
+      namespace:
+        name: "<name>"
+        hexColor: "#9DAF9F"
+      regex:
+        name: "<name>"
+        hexColor: "#89DDFF"
+      annotation:
+        name: "<name>"
+        hexColor: "#A0D0EA"
+      reference_type:
+        name: "<name>"
+        hexColor: "#BBDABF"
+      character:
+        name: "<name>"
+        hexColor: "#EFC396"
+      method:
+        name: "<name>"
+        hexColor: "#CECC99"
+      identifier:
+        name: "<name>"
+        hexColor: "#A0D0EA"
+      number:
+        name: "<name>"
+        hexColor: "#9CDCFE"
+      other:
+        name: "<name>"
+        hexColor: "#C6C2C1"
+  -
+    name: "Cascara Light"
+    path: "themes/cascara-light.json"
+    baseColors:
+      bgaccent:
+        name: "fgaccent"
+        hexColor: "#4D9DFF"
+        leftColor: "#4D9DFF"
+        rightColor: "#1581FF"
+        lerp: "0.0"
+      foreground:
+        name: "fgwindow"
+        hexColor: "#010003"
+        leftColor: "#010003"
+        rightColor: "#03003D"
+      background:
+        name: "bgwindow"
+        hexColor: "#A7A69F"
+        leftColor: "#A7A69F"
+        rightColor: "#ECEAE1"
+        lerp: "0.0"
+      fgaccent:
+        name: "fgaccent"
+        hexColor: "#FFD390"
+        leftColor: "#FFB653"
+        rightColor: "#FFDFA7"
+        lerp: "0.7272727272727273"
+      test:
+        name: "Gray 1"
+        hexColor: "#B7B7B7"
+        leftColor: "#B7B7B7"
+        rightColor: "#65B775"
+      2ae4bee9-207e-45e5-aada-468c326eff81:
+        name: "UI Background"
+        hexColor: "#EEEAE3"
+        leftColor: "#EEEAE3"
+        rightColor: "#ABFF83"
+        lerp: "0.0"
+    transforms:
+      addf395a-0bea-426c-849d-e9a34014e991:
+        name: "darken"
+        hexColor: "#000000"
+        transformDefinition: "Brightness:-0.2"
+      ccf13829-d3a7-48a4-a472-1dd92d79c2e5:
+        name: "desaturate"
+        hexColor: "#000000"
+        transformDefinition: "Saturation:-0.5"
+      872f1ff5-37fe-4b4e-9c12-710f79237e66:
+        name: "darken2"
+        hexColor: "#000000"
+        transformDefinition: "Brightness:-0.5"
+      b1249483-78af-475b-ba9a-cdecbd1d07c1:
+        name: "brighter"
+        hexColor: "#000000"
+        transformDefinition: "Brightness:0.3"
+    paletteColors:
+      accentBackground:
+        name: "Accent Background"
+        hexColor: "#4D9DFF"
+        leftColor: "#4D9DFF"
+        rightColor: "#15FF19"
+        lerp: "0"
+        baseColorId: "bgaccent"
+      accentForeground:
+        name: "Accent Foreground"
+        hexColor: "#FFDFAF"
+        leftColor: "#FFDFAF"
+        rightColor: "#ead9c7"
+        lerp: "0"
+        transformId: "ccf13829-d3a7-48a4-a472-1dd92d79c2e5"
+        baseColorId: "fgaccent"
+      controlBackground:
+        name: "Control Background"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#27252A"
+        lerp: "0"
+        baseColorId: "2ae4bee9-207e-45e5-aada-468c326eff81"
+      controlForeground:
+        name: "Control Foreground"
+        hexColor: "#010003"
+        leftColor: "#1F0058"
+        rightColor: "#9B8C79"
+        lerp: "0"
+        baseColorId: "foreground"
+      documentBackground:
+        name: "Document Background"
+        hexColor: "#FFFAF3"
+        leftColor: "#FFFAF3"
+        rightColor: "#1D1922"
+        lerp: "0"
+        transformId: "b1249483-78af-475b-ba9a-cdecbd1d07c1"
+        baseColorId: "2ae4bee9-207e-45e5-aada-468c326eff81"
+      emptyBackground:
+        name: "Empty Background"
+        hexColor: "#BBBBBB"
+        leftColor: "#BBBBBB"
+        rightColor: "#231E29"
+        lerp: "0.0"
+      textForeground:
+        name: "Data Background"
+        hexColor: "#CCC8C2"
+        leftColor: "#B2AFAA"
+        rightColor: "#C6C2C1"
+        lerp: "0"
+        transformId: "addf395a-0bea-426c-849d-e9a34014e991"
+        baseColorId: "2ae4bee9-207e-45e5-aada-468c326eff81"
+      markForeground:
+        name: "Dull Accent Background"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#C6C2C1"
+        lerp: "0"
+        transformId: "addf395a-0bea-426c-849d-e9a34014e991"
+        baseColorId: "bgaccent"
+      bf8e9fbe-66f5-4890-8a82-7a246c8ee4b1:
+        name: "Text Foreground"
+        hexColor: "#010003"
+        leftColor: "#1F0058"
+        rightColor: "#C6C2C1"
+        lerp: "0"
+        baseColorId: "foreground"
+    uiColors:
+      foreground:
+        name: "foreground"
+        hexColor: "#010003"
+        leftColor: "#010003"
+        rightColor: "#212020"
+      focusBorder:
+        name: "focusBorder"
+        hexColor: "#3F3544"
+        leftColor: "#3F3544"
+        rightColor: "#3F3544"
+      selectionBackground:
+        name: "selectionBackground"
+        hexColor: "#342B33"
+      iconForeground:
+        name: "iconForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#3D7DCC"
+        rightColor: "#9E9DA0"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      activitybarInactiveForeground:
+        name: "activitybarInactiveForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#3D7DCC"
+        rightColor: "#0B80EB"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      activitybarInactiveBackground:
+        name: "activitybarInactiveBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      activitybarActiveBackground:
+        name: "activitybarActiveBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      activitybarActiveForeground:
+        name: "activitybarActiveForeground"
+        hexColor: "#4D9DFF"
+        leftColor: "#4D9DFF"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      activitybarBadgeBackground:
+        name: "activitybarBadgeBackground"
+        hexColor: "#FFDFAF"
+        leftColor: "#EAD9C7"
+        rightColor: "#494386"
+        lerp: "0"
+        paletteColorId: "accentForeground"
+      activitybarBadgeForeground:
+        name: "activitybarBadgeForeground"
+        hexColor: "#C6C2C1"
+      activitybarToggledBackground:
+        name: "activitybarToggledBackground"
+        hexColor: "#3F3544"
+      activitybarActiveBorder:
+        name: "activitybarActiveBorder"
+        hexColor: "#157EFF"
+        leftColor: "#157EFF"
+        rightColor: "#5850A2"
+        lerp: "0"
+      activitybarDropBorder:
+        name: "activitybarDropBorder"
+        hexColor: "#157EFF"
+        leftColor: "#157EFF"
+        rightColor: "#5850A2"
+        lerp: "0"
+      activitybartopActiveBorder:
+        name: "activitybartopActiveBorder"
+        hexColor: "#A1A1A1"
+        leftColor: "#A1A1A1"
+        rightColor: "#E7E7E7"
+        lerp: "0"
+      activitybartopDropBorder:
+        name: "activitybartopDropBorder"
+        hexColor: "#A1A1A1"
+        leftColor: "#A1A1A1"
+        rightColor: "#E7E7E7"
+        lerp: "0"
+      activitybartopActiveForeground:
+        name: "activitybartopActiveForeground"
+        hexColor: "#3B2C58"
+        leftColor: "#3B2C58"
+        rightColor: "#E7E7E7"
+        lerp: "0"
+      activitybartopInactiveForeground:
+        name: "activitybartopInactiveForeground"
+        hexColor: "#E7E7E7"
+      badgeInfoBackground:
+        name: "badgeInfoBackground"
+        hexColor: "#5850A2"
+      badgeInfoForeground:
+        name: "badgeInfoForeground"
+        hexColor: "#E7E7E7"
+      badgeErrorBackground:
+        name: "badgeErrorBackground"
+        hexColor: "#F14C4C"
+      badgeErrorForeground:
+        name: "badgeErrorForeground"
+        hexColor: "#E7E7E7"
+      badgeWarnBackground:
+        name: "badgeWarnBackground"
+        hexColor: "#CCA700"
+      badgeWarnForeground:
+        name: "badgeWarnForeground"
+        hexColor: "#000000"
+      buttonBackground:
+        name: "buttonBackground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      buttonForeground:
+        name: "buttonForeground"
+        hexColor: "#EAD9C7"
+      buttonHoverBackground:
+        name: "buttonHoverBackground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      checkboxBorder:
+        name: "checkboxBorder"
+        hexColor: "#6B6B6B"
+      checkboxBackground:
+        name: "checkboxBackground"
+        hexColor: "#3C3C3C"
+      checkboxDisabledBackground:
+        name: "checkboxDisabledBackground"
+        hexColor: "#777777"
+      checkboxDisabledForeground:
+        name: "checkboxDisabledForeground"
+        hexColor: "#B4B4B4"
+      checkboxForeground:
+        name: "checkboxForeground"
+        hexColor: "#F0F0F0"
+      checkboxSelectedBackground:
+        name: "checkboxSelectedBackground"
+        hexColor: "#252526"
+      checkboxSelectedBorder:
+        name: "checkboxSelectedBorder"
+        hexColor: "#9E9DA0"
+      documentAreaHeaderNoTabsBackground:
+        name: "documentAreaHeaderNoTabsBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#27252A"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      documentAreaHeaderTabsBackground:
+        name: "documentAreaHeaderTabsBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#27252A"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      disabledForeground:
+        name: "disabledForeground"
+        hexColor: "#CCCCCC"
+      dropdownBackground:
+        name: "dropdownBackground"
+        hexColor: "#CCC8C2"
+        leftColor: "#CCC8C2"
+        rightColor: "#3C3C3C"
+        lerp: "0"
+        paletteColorId: "textForeground"
+      dropdownForeground:
+        name: "dropdownForeground"
+        hexColor: "#010003"
+        leftColor: "#010003"
+        rightColor: "#3C3C3C"
+        lerp: "0"
+        paletteColorId: "bf8e9fbe-66f5-4890-8a82-7a246c8ee4b1"
+      dropdownBorder:
+        name: "dropdownBorder"
+        hexColor: "#f0f0f0"
+      editorBackground:
+        name: "editorBackground"
+        hexColor: "#FFFAF3"
+        leftColor: "#FFFAF3"
+        rightColor: "#ECF4F8"
+        lerp: "0"
+        paletteColorId: "documentBackground"
+      editorForeground:
+        name: "editorForeground"
+        hexColor: "#010003"
+        leftColor: "#010003"
+        rightColor: "#191980"
+        lerp: "0"
+        paletteColorId: "bf8e9fbe-66f5-4890-8a82-7a246c8ee4b1"
+      editorIndentGuideActiveBackground:
+        name: "editorIndentGuideActiveBackground"
+        hexColor: "#707070"
+      editorIndentGuideInactiveBackground:
+        name: "editorIndentGuideInactiveBackground"
+        hexColor: "#404040"
+      editorSelectionActiveBackground:
+        name: "editorSelectionActiveBackground"
+        hexColor: "#342B33"
+      editorSelectionForeground:
+        name: "editorSelectionForeground"
+        hexColor: "#E0CAA9"
+      editorSelectionInactiveBackground:
+        name: "editorSelectionInactiveBackground"
+        hexColor: "#3A3D41"
+      editorMatchBackground:
+        name: "editorMatchBackground"
+        hexColor: "#1D1922"
+      editorMatchForeground:
+        name: "editorMatchForeground"
+        hexColor: "#E0CAA9"
+      editorMatchBorder:
+        name: "editorMatchBorder"
+        hexColor: "#E0CAA9"
+      editorMatchHighlightBackground:
+        name: "editorMatchHighlightBackground"
+        hexColor: "#494386"
+      editorMatchHighlightForeground:
+        name: "editorMatchHighlightForeground"
+        hexColor: "#E0CAA9"
+      editorErrorForeground:
+        name: "editorErrorForeground"
+        hexColor: "#ff4d4d"
+      editorWarnForeground:
+        name: "editorWarnForeground"
+        hexColor: "#ffb84d"
+      editorInfoForeground:
+        name: "editorInfoForeground"
+        hexColor: "#4da6ff"
+      gitdecorationUntrackedForeground:
+        name: "gitdecorationUntrackedForeground"
+        hexColor: "#7067B5"
+      gitdecorationModifiedForeground:
+        name: "gitdecorationModifiedForeground"
+        hexColor: "#7067B5"
+      inputForeground:
+        name: "inputForeground"
+        hexColor: "#010003"
+        leftColor: "#010003"
+        rightColor: "#191980"
+      inputPlaceholderForeground:
+        name: "inputPlaceholderForeground"
+        hexColor: "#A1A1A1"
+        leftColor: "#A1A1A1"
+        rightColor: "#A6A6A6"
+      inputBackground:
+        name: "inputBackground"
+        hexColor: "#CCCAC2"
+        leftColor: "#CCCAC2"
+        rightColor: "#ECF4F8"
+      inputBorder:
+        name: "inputBorder"
+        paletteColorId: "documentBackground"
+        hexColor: "#FFFAF3"
+      linkInactiveForeground:
+        name: "linkInactiveForeground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#E0CAA9"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      linkActiveForeground:
+        name: "linkActiveForeground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#E0CAA9"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      listFocusBackground:
+        name: "listFocusBackground"
+        hexColor: "#CCA873"
+        leftColor: "#CCA873"
+        rightColor: "#27252A"
+        lerp: "0"
+      listFocusForeground:
+        name: "listFocusForeground"
+        hexColor: "#EAD9C7"
+      listSelectionActiveBackground:
+        name: "listSelectionActiveBackground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      listSelectionActiveForeground:
+        name: "listSelectionActiveForeground"
+        hexColor: "#231E18"
+      listFocusOutline:
+        name: "listFocusOutline"
+        hexColor: "#5850A2"
+      listSelectionFocusOutline:
+        name: "listSelectionFocusOutline"
+        hexColor: "#5850A2"
+      listSelectionInactiveBackground:
+        name: "listSelectionInactiveBackground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      listSelectionInactiveForeground:
+        name: "listSelectionInactiveForeground"
+        hexColor: "#231E18"
+      listHoverBackground:
+        name: "listHoverBackground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      listWarningForeground:
+        name: "listWarningForeground"
+        hexColor: "#E0CAA9"
+      listSelectionActiveIconForeground:
+        name: "listSelectionActiveIconForeground"
+        hexColor: "#FFFFFF"
+      listDropBackground:
+        name: "listDropBackground"
+        hexColor: "#383B3D"
+      menuBarSelectionBackground:
+        name: "menuBarSelectionBackground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#5850A2"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      menuBarSelectionForeground:
+        name: "menuBarSelectionForeground"
+        hexColor: "#EAD9C7"
+      menuBorder:
+        name: "menuBorder"
+        hexColor: "#B6BDF3"
+      menuForeground:
+        name: "menuForeground"
+        hexColor: "#00448B"
+      menuBackground:
+        name: "menuBackground"
+        hexColor: "#F1EDED"
+      menuSelectionForeground:
+        name: "menuSelectionForeground"
+        hexColor: "#EAD9C7"
+      menuSelectionBackground:
+        name: "menuSelectionBackground"
+        hexColor: "#4D9DFF"
+        leftColor: "#157EFF"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "accentBackground"
+      menuSelectionBorder:
+        name: "menuSelectionBorder"
+        hexColor: "#6BA4FF"
+      menuSeparatorBackground:
+        name: "menuSeparatorBackground"
+        hexColor: "#7EB4D7"
+      notificationBackground:
+        name: "notificationBackground"
+        hexColor: "#231E29"
+      notificationForeground:
+        name: "notificationForeground"
+        hexColor: "#9E9DA0"
+      notificationBorder:
+        name: "notificationBorder"
+        hexColor: "#3F3544"
+      notificationLink:
+        name: "notificationLink"
+        hexColor: "#E0CAA9"
+      notificationIconInfo:
+        name: "notificationIconInfo"
+        hexColor: "#9E9DA0"
+      notificationIconError:
+        name: "notificationIconError"
+        hexColor: "#F14C4C"
+      notificationIconWarning:
+        name: "notificationIconWarning"
+        hexColor: "#CCA700"
+      panelBackground:
+        name: "panelBackground"
+        hexColor: "#DFDAD9"
+        leftColor: "#DFDAD9"
+        rightColor: "#1D1922"
+        lerp: "0"
+      portsIconRunningProcessForeground:
+        name: "portsIconRunningProcessForeground"
+        hexColor: "#369432"
+      radioActiveBackground:
+        name: "radioActiveBackground"
+        hexColor: "#3F3544"
+      radioActiveBorder:
+        name: "radioActiveBorder"
+        hexColor: "#007ACC"
+      radioActiveForeground:
+        name: "radioActiveForeground"
+        hexColor: "#FFFFFF"
+      radioInactiveBorder:
+        name: "radioInactiveBorder"
+        hexColor: "#FFFFFF"
+      radioInactiveHoverBackground:
+        name: "radioInactiveHoverBackground"
+        hexColor: "#5A5D5E"
+        leftColor: "#5A5D5E"
+        rightColor: "#5A5D5E"
+      scrollThumbBackground:
+        name: "scrollThumbBackground"
+        hexColor: "#BBBBBB"
+        leftColor: "#BBBBBB"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "emptyBackground"
+      scrollThumbHoverBackground:
+        name: "scrollThumbHoverBackground"
+        hexColor: "#494386"
+      scrollThumbActiveBackground:
+        name: "scrollThumbActiveBackground"
+        hexColor: "#2F2947"
+      scrollShadow:
+        name: "scrollShadow"
+        hexColor: "#2F2947"
+      sidebarBackground:
+        name: "sidebarBackground"
+        hexColor: "#CCC8C2"
+        leftColor: "#777671"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "textForeground"
+      sidebarForeground:
+        name: "sidebarForeground"
+        hexColor: "#010003"
+        leftColor: "#010003"
+        rightColor: "#191980"
+      sidebarDropBackground:
+        name: "sidebarDropBackground"
+        hexColor: "#CCA873"
+        leftColor: "#CCA873"
+        rightColor: "#553067"
+        lerp: "0"
+      sidebarBorder:
+        name: "sidebarBorder"
+        hexColor: "#3F3544"
+        leftColor: "#3F3544"
+        rightColor: "#3F3544"
+      sidebarTitleForeground:
+        name: "sidebarTitleForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      sidebarTitleBackground:
+        name: "sidebarTitleBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      sidebarHeaderBackground:
+        name: "sidebarHeaderBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      sidebarHeaderForeground:
+        name: "sidebarHeaderForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      sidebarHeaderBorder:
+        name: "sidebarHeaderBorder"
+        hexColor: "#27252A"
+      statusbarBackground:
+        name: "statusbarBackground"
+        hexColor: "#27252A"
+      statusbarForeground:
+        name: "statusbarForeground"
+        hexColor: "#9B8C79"
+      statusbarNofolderBackground:
+        name: "statusbarNofolderBackground"
+        hexColor: "#3A373B"
+      statusbarDebuggingBackground:
+        name: "statusbarDebuggingBackground"
+        hexColor: "#4D468D"
+      statusbarDebuggingForeground:
+        name: "statusbarDebuggingForeground"
+        hexColor: "#EAD9C7"
+      statusbarItemRemoteBackground:
+        name: "statusbarItemRemoteBackground"
+        hexColor: "#27252A"
+      statusbarItemRemoteForeground:
+        name: "statusbarItemRemoteForeground"
+        hexColor: "#9B8C79"
+      statusbarItemRemoteHoverBackground:
+        name: "statusbarItemRemoteHoverBackground"
+        hexColor: "#494386"
+      statusbarItemRemoteHoverForeground:
+        name: "statusbarItemRemoteHoverForeground"
+        hexColor: "#E0CAA9"
+      statusbarItemHoverBackground:
+        name: "statusbarItemHoverBackground"
+        hexColor: "#494386"
+      statusbarItemHoverForeground:
+        name: "statusbarItemHoverForeground"
+        hexColor: "#E0CAA9"
+      tabActiveBackground:
+        name: "tabActiveBackground"
+        hexColor: "#FFFAF3"
+        leftColor: "#FFFAF3"
+        rightColor: "#ECF4F8"
+        lerp: "0"
+        paletteColorId: "documentBackground"
+      tabActiveBorder:
+        name: "tabActiveBorder"
+        hexColor: "#FFFAF3"
+        leftColor: "#FFFAF3"
+        rightColor: "#ECF4F8"
+        lerp: "0"
+        paletteColorId: "documentBackground"
+      tabActiveForeground:
+        name: "tabActiveForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#E0CAA9"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      tabInactiveBackground:
+        name: "tabInactiveBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#EEEAE3"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      tabInactiveForeground:
+        name: "tabInactiveForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#9E9DA0"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      tabSelectedBackground:
+        name: "tabSelectedBackground"
+        hexColor: "#FFFAF3"
+        leftColor: "#FFFAF3"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "documentBackground"
+      tabSelectedBorderTop:
+        name: "tabSelectedBorderTop"
+        hexColor: "#157EFF"
+        leftColor: "#157EFF"
+        rightColor: "#E0CAA9"
+        lerp: "0"
+      tabSelectedForeground:
+        name: "tabSelectedForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#FFFFFF"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      tabLastPinnedBorder:
+        name: "tabLastPinnedBorder"
+        hexColor: "#F1EDED"
+      terminalSelectionInactiveBackground:
+        name: "terminalSelectionInactiveBackground"
+        hexColor: "#3A3D41"
+      titlebarActiveForeground:
+        name: "titlebarActiveForeground"
+        hexColor: "#3D7DCC"
+        leftColor: "#1064CC"
+        rightColor: "#6BA4FF"
+        lerp: "0"
+        paletteColorId: "markForeground"
+      titlebarActiveBackground:
+        name: "titlebarActiveBackground"
+        hexColor: "#EEEAE3"
+        leftColor: "#D3BD93"
+        rightColor: "#F1EDED"
+        lerp: "0"
+        paletteColorId: "controlBackground"
+      titlebarInactiveBackground:
+        name: "titlebarInactiveBackground"
+        hexColor: "#A1A1A1"
+        leftColor: "#A1A1A1"
+        rightColor: "#F1EDED"
+        lerp: "0"
+      welcomepageBackground:
+        name: "welcomepageBackground"
+        hexColor: "#ECF4F8"
+      widgetBorder:
+        name: "widgetBorder"
+        hexColor: "#303031"
+      widgetShadow:
+        name: "widgetShadow"
+        hexColor: "#00B4E6"
+      tooltipBorder:
+        name: "tooltipBorder"
+        hexColor: "#3A373B"
+    codeColors:
+      variable:
+        name: "<name>"
+        hexColor: "#A0D0EA"
+      primitive_type:
+        name: "<name>"
+        hexColor: "#BBDABF"
+      comment:
+        name: "<name>"
+        hexColor: "#5D50A6"
+      keyword:
+        name: "<name>"
+        hexColor: "#D0ADCD"
+      modifier:
+        name: "<name>"
+        hexColor: "#867C97"
+      constant:
+        name: "<name>"
+        hexColor: "#5BB0FF"
+      operator:
+        name: "<name>"
+        hexColor: "#C6C2C1"
+      string:
+        name: "<name>"
+        hexColor: "#EFC396"
+      namespace:
+        name: "<name>"
+        hexColor: "#9DAF9F"
+      regex:
+        name: "<name>"
+        hexColor: "#89DDFF"
+      annotation:
+        name: "<name>"
+        hexColor: "#A0D0EA"
+      reference_type:
+        name: "<name>"
+        hexColor: "#BBDABF"
+      character:
+        name: "<name>"
+        hexColor: "#EFC396"
+      method:
+        name: "<name>"
+        hexColor: "#CECC99"
+      identifier:
+        name: "<name>"
+        hexColor: "#A0D0EA"
+      number:
+        name: "<name>"
+        hexColor: "#9CDCFE"
+      other:
+        name: "<name>"
+        hexColor: "#EFC396"

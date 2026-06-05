@@ -1,0 +1,435 @@
+
+/* The Main Container */
+
+.theme-win7 {
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+    -fx-pref-height: 30px;
+        /* Layer 1: The 'Reflection' (Top half highlight)
+       Layer 2: The 'Base' metallic blue gradient */
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 50%, transparent 50.1%, transparent 100%),
+        linear-gradient(to bottom, #dceefc 0%, #abc1da 50%, #87a4c4 51%, #a5bdd8 100%),
+        radial-gradient(center 50% 50%, radius 70%, rgba(255,255,255,0.1), transparent);
+
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-color: rgba(255, 255, 255, 0.4) rgba(0,0,0,0.3) transparent rgba(0,0,0,0.3);
+    -fx-border-width: 1 1 0 1;
+    -fx-border-radius: 8 8 0 0;
+}
+
+.theme-win7 .title-text {
+    -fx-text-fill: #1e1e1e;
+    -fx-effect: dropshadow(gaussian, white, 8, 0.6, 0, 0);
+    -fx-font-family: "Segoe UI", "Tahoma", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* Win7 Buttons - Circular and Glossy */
+.theme-win7 .base-button {
+    -fx-background-color: linear-gradient(to bottom, #f2f2f2, #ebebeb 50%, #dddddd 51%, #cfcfcf);
+    -fx-background-radius: 20;
+    -fx-border-color: #707070;
+    -fx-border-radius: 20;
+    -fx-pref-width: 28px;
+    -fx-pref-height: 18px;
+    -fx-margin: 5 2 5 2;
+    -fx-effect: innershadow(gaussian, white, 2, 0, 0, 1);
+}
+
+.theme-win7 .base-button {
+    /* Layer 1: The gloss | Layer 2: The base gradient */
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+
+    /* Rounded only at the bottom corners */
+    -fx-background-radius: 0 0 3 3;
+    -fx-border-radius: 0 0 3 3;
+
+    /* Remove the top border part by setting width to 0 for the top */
+    -fx-border-color: transparent #707070 #707070 #707070;
+    -fx-border-width: 0 1 1 1;
+
+    -fx-pref-width: 30px;
+    -fx-pref-height: 20px;
+
+    /* Critical: Align the button to the very top of its parent */
+    -fx-alignment: TOP_CENTER;
+    -fx-padding: 4 0 0 0; /* Push the icon down slightly from the top edge */
+}
+
+/* The Close Button in Win7 is notoriously wider and red */
+.theme-win7 .close-button {
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #f8b3b3, #f27d7d 49%, #e64e4e 50%, #d63333 100%);
+    -fx-pref-width: 45px;
+    -fx-border-color: transparent #701c1c #701c1c #701c1c;
+}
+
+.theme-win7 .base-button:hover {
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #e5f1fb, #dcf0f9 49%, #bbe1f1 50%, #99d1e9 100%);
+    -fx-border-color: transparent #3c7fb1 #3c7fb1 #3c7fb1;
+}
+
+/* The Close Button Glow (Amber/Red) */
+.theme-win7 .close-button:hover {
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 50%),
+        linear-gradient(to bottom, #f8b3b3, #f27d7d 49%, #e64e4e 50%, #d63333 100%);
+    -fx-border-color: #701c1c;
+}
+
+.theme-win7 .base-icon {
+    -fx-background-color: #444444;
+    -fx-min-width: 8px;
+    -fx-max-width: 8px;
+    -fx-min-height: 8px;
+    -fx-max-height: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.8), 0, 0, 0, 1);
+}
+
+.theme-win7 .close-button .base-icon {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 1, 0, 0, 1);
+}
+
+/* Win7 specific shapes (slightly softer than Win10) */
+.theme-win7 .close-icon {
+    -fx-shape: "M 0 1 L 1 0 L 4 3 L 7 0 L 8 1 L 5 4 L 8 7 L 7 8 L 4 5 L 1 8 L 0 7 L 3 4 Z";
+}
+
+.theme-win7 .minimize-icon {
+    /* M 0 0 (Anchor) M 10 10 (Anchor) M 1 7 h 8 v 2 h -8 z (The Line) */
+    -fx-shape: "M 0 0 M 10 10 M 1 7 h 8 v 2 h -8 z";
+}
+
+/* Minimize Icon Fix: The 'Stitch' Path */
+.theme-win7 .minimize-icon {
+    /* We draw a 'Z' shape:
+       1. Top-left corner (0,0)
+       2. Invisible diagonal to bottom-right (10,10)
+       3. The actual visible 1px line at (1,7) */
+    -fx-shape: "M 0 0 L 0.1 0.1 M 10 10 L 9.9 9.9 M 1 7 H 9 V 8 H 1 Z";
+}
+
+.theme-win7 .button-box { /* Ensure you add 'button-box' class to rightContainer */
+    -fx-background-color: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+    -fx-background-radius: 0 0 5 5;
+    -fx-border-color: transparent rgba(255,255,255,0.3) rgba(255,255,255,0.3) rgba(255,255,255,0.3);
+    -fx-border-width: 0 1 1 1;
+    -fx-margin: 0 10 0 0;
+}
+
+.theme-win7 .aero-orb {
+    -fx-min-width: 22px;
+    -fx-max-width: 22px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
+
+    /* Layer 1: Top Shine | Layer 2: Bottom Glow | Layer 3: Base Blue Sphere */
+    -fx-background-color:
+        radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 20%, radius 40%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(center 50% 80%, radius 50%, rgba(100,200,255,0.4), transparent),
+        linear-gradient(to bottom, #2a5298, #1e3c72);
+
+    -fx-background-radius: 50; /* Perfect circle */
+
+    /* Outer silver ring */
+    -fx-border-color: linear-gradient(to bottom, #ffffff, #777777);
+    -fx-border-width: 1.5;
+    -fx-border-radius: 50;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 1);
+}
+
+.theme-win7 .aero-orb:hover {
+    -fx-effect: dropshadow(gaussian, #4fc3f7, 8, 0.5, 0, 0); /* Glow when hovered */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *  Windows 10 Theme
+ */
+
+ /* Generic Modern Theme */
+ .theme-win10 {
+     -fx-background-color:white;
+ }
+
+ .theme-win10:inactive {
+     -fx-background-color: white;
+ }
+
+ .theme-win10 .title-text {
+     -fx-opacity: 1.0;
+     -fx-padding: 0 8px; /* Horizontal space around the text */
+     -fx-background-color: white;
+     -fx-text-fill: #7f7fdd;
+     -fx-font-weight: bold;
+     -fx-font-size: 1.1em;
+     -fx-font-family: Dosis;
+ }
+
+ .theme-win10:inactive .title-text {
+     -fx-text-fill: #7f7fdd;
+ }
+
+ /* Windows 10 Control Buttons */
+ .theme-win10 .base-button {
+     -fx-background-color: transparent;
+     -fx-pref-width: 46px;
+     -fx-pref-height: 30px;
+     /* Ensure the button centers its content */
+     -fx-alignment: CENTER;
+     -fx-content-display: GRAPHIC_ONLY;
+ }
+
+ .theme-win10 .base-icon {
+     -fx-background-color: black;
+     /* Use 'scale-shape' to ensure the vector stays crisp
+        within the 10x10 bounds we set in Java */
+     -fx-scale-shape: true;
+     -fx-position-shape: true;
+ }
+
+ /* Minimize: 1px line at the bottom.
+    We add 'M 0 0' at the start to ensure the shape bounds start at the top left. */
+    .theme-win10 .minimize-icon {
+        /* M 0 0 h 0.1 (tiny line at top) then M 0 9 (move to bottom) */
+        -fx-shape: "M 0 0 h 0.1 M 0 9 h 10 v 1 h -10 z";
+    }
+ /* Maximize: Hollow square */
+ .theme-win10 .maximize-icon {
+     -fx-shape: "M 0 0 H 10 V 10 H 0 Z M 1 1 V 9 H 9 V 1 Z";
+ }
+
+ /* Close: The X */
+ .theme-win10 .close-icon {
+     -fx-shape: "M 0 0.7 L 0.7 0 L 5 4.3 L 9.3 0 L 10 0.7 L 5.7 5 L 10 9.3 L 9.3 10 L 5 5.7 L 0.7 10 L 0 9.3 L 4.3 5 Z";
+ }
+
+ /* Restore Icon: Two overlapping hollow squares */
+.theme-win10 .restore-icon {
+    -fx-shape: "M 2 0 H 10 V 8 H 8 V 10 H 0 V 2 H 2 Z M 3 1 V 7 H 9 V 1 Z M 1 3 V 9 H 7 V 3 Z";
+}
+
+ /* --- Hovers --- */
+ .theme-win10 .base-button:hover {
+     -fx-background-color: #e5e5e5;
+ }
+
+ .theme-win10 .close-button:hover {
+     -fx-background-color: #e81123;
+ }
+
+ /* Change icon color to white on close-hover */
+ .theme-win10 .close-button:hover .base-icon {
+     -fx-background-color: white;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  System 8 */
+
+
+.theme-sys8 {
+    -fx-background-color: -color-titlebar-active-background;
+
+
+    -fx-opacity: 1.0;
+}
+
+.theme-sys8:inactive {
+    -fx-background-color: -color-titlebar-inactive-background;
+}
+
+
+
+/* The container for the lines */
+.theme-sys8 .stretching-lines-canvas {
+    /* Create a pattern: 1px Gray line followed by 2px Transparent space */
+    -fx-background-color:
+        linear-gradient(from 0px 0px to 0px 3px, repeat,
+            -color-titlebar-active-foreground 0%,
+            -color-titlebar-active-foreground 33%,
+            transparent 33%,
+            transparent 100%);
+
+    /* Insets ensure the lines don't hit the very top/bottom of the bar */
+    -fx-background-insets: 4 0 4 0;
+    -fx-opacity: 0.6;
+    -fx-padding: 0 20px; /* Horizontal space around the text */
+}
+
+/* When the title bar has the :inactive state */
+.theme-sys8:inactive .stretching-lines-canvas {
+    -fx-opacity: 0.0; /* Lines vanish classic Mac style */
+}
+
+
+
+
+/* The label needs a solid background to "cut" the lines in the center */
+.theme-sys8 .title-text {
+    -fx-opacity: 1.0;
+    -fx-padding: 0 8px; /* Horizontal space around the text */
+    -fx-background-color: -color-titlebar-active-background;
+    -fx-text-fill: -color-titlebar-active-foreground;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-font-family: Dosis;
+}
+
+.theme-sys8:inactive .title-text {
+    -fx-background-color: -color-titlebar-inactive-background;
+    -fx-opacity: 0.6;
+}
+
+
+
+/* General button sizing for System 8 */
+.theme-sys8 .base-button {
+    -fx-background-color: #CCCCCC; /* Platinum Gray */
+    -fx-border-color: #666666 #FFFFFF #FFFFFF #666666; /* 3D chiseled look */
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+    -fx-min-width: 14px;
+    -fx-max-width: 14px;
+    -fx-min-height: 14px;
+    -fx-max-height: 14px;
+}
+
+/* Interaction States */
+.theme-sys8 .base-button:pressed {
+    -fx-background-color: #999999;
+    -fx-border-color: #FFFFFF #666666 #666666 #FFFFFF; /* Inverted 3D */
+}
+
+
+
+.theme-sys8 .close-button,
+.theme-sys8 .close-button:pressed {
+    -fx-background-insets: 1;
+    -fx-background-color: linear-gradient(to bottom right, -color-control-foreground-dark, -color-control-foreground);
+    -fx-background-radius: 0;
+    -fx-border-radius: 0, 0, 0;
+    -fx-border-insets: 0, 1, 2;
+    -fx-border-color: -color-control-foreground-dark -color-control-foreground  -color-control-foreground  -color-control-foreground-dark , derive(-color-control-background, -30%), -color-control-foreground -color-control-foreground-dark  -color-control-foreground-dark  -color-control-foreground;
+    -fx-opacity: 0.6;
+
+    -fx-min-width: 14px;
+    -fx-max-width: 14px;
+    -fx-min-height: 14px;
+    -fx-max-height: 14px;
+}
+
+.theme-sys8 .close-button:pressed:hover {
+    -fx-background-color: linear-gradient(to bottom right, -color-control-foreground-dark, -color-control-foreground);
+    -fx-border-color: -color-control-foreground-dark -color-control-foreground  -color-control-foreground  -color-control-foreground-dark, derive(-color-control-background, -30%), -color-control-foreground-dark -color-control-foreground  -color-control-foreground  -color-control-foreground-dark;
+}
+
+
+
+/* Zoom Box (Maximize) Icon */
+.theme-sys8 .maximize-button {
+    -fx-shape: "M0 0 H10 V10 H0 Z M1 1 H7 V7 H1 Z M3 3 H9 V9 H3 Z"; /* Square-in-square */
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+}
+
+/* Minimize Icon (Modern addition) */
+.theme-sys8 .minimize-button {
+    -fx-shape: "M0 4 H10 V6 H0 Z"; /* A simple horizontal dash */
+    -fx-scale-x: 0.7;
+}
+
+
+
+
+
+
+
+
+
+/*
+ *  Modern Theme
+ */
+
+/* Generic Modern Theme */
+.theme-modern {
+    -fx-background-color: #FFCC99;
+    /* -fx-opacity: 0.9; */
+}
+
+.theme-modern:inactive {
+    -fx-background-color: white;
+    /* -fx-opacity: 0.6; */
+}
+
+.theme-modern .title-text {
+    -fx-opacity: 1.0;
+    -fx-padding: 0 8px; /* Horizontal space around the text */
+    -fx-background-color: white;
+    -fx-text-fill: #7f7fdd;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-font-family: Dosis;
+}
+
+.theme-modern:inactive .title-text {
+    -fx-text-fill: #7f7fdd;
+    /* -fx-background-color: -color-titlebar-inactive-background; */
+    /* -fx-opacity: 0.6; */
+}
+
+/* General button sizing for System 8 */
+.theme-modern .base-button {
+    -fx-border-color: red;
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+    -fx-min-width: 46px;
+    -fx-max-width: 46px;
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+
+    -fx-background-color: transparent;
+    -fx-shape: null; /* Use specific shapes below */
+}
+
+
+
+
+
+
+
+
+
+
+
+

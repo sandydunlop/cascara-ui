@@ -1,0 +1,40 @@
+.color-transformation-control {
+    /* Ensures the control can be sized freely by the client */
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+}
+
+/* Style for the main container boxes (Sections 1, 3, 5) */
+.rounded-section-box {
+    -fx-background-color: -fx-control-inner-background; /* Use system background color */
+    -fx-background-radius: 12; /* Rounded corners for the main boxes */
+    -fx-border-color: #AAAAAA; /* Visible border for light/dark mode separation */
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 1);
+    -fx-padding: 0; /* Padding is handled by the StackPane for better control */
+}
+
+/* Style for the individual 32x32 color boxes */
+.color-box {
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+    -fx-max-width: 32;
+    -fx-max-height: 32;
+    -fx-background-radius: 8; /* Rounded corners for the color swatches */
+    -fx-border-color: -fx-text-base-color; /* Small border helps distinguish colors in light/dark mode */
+    -fx-border-radius: 8;
+    -fx-border-width: 1px;
+}
+
+/* The VBox inside the main section that holds the FlowPane */
+.color-container {
+    /* Ensures the inner VBox does not interfere with the wrapper's border/radius */
+    -fx-background-color: transparent;
+}
+
+/* Style for the arrows */
+.arrow-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: -fx-text-base-color; /* Ensures visibility in both light and dark mode */
+}
