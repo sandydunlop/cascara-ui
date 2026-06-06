@@ -9,11 +9,14 @@ variations:
     transforms:
     paletteColors:
       accentBackground:
-        name: "<name>"
+        name: "Accent Background"
         hexColor: "#494386"
       accentForeground:
-        name: "<name>"
+        name: "Accent Foreground"
         hexColor: "#EAD9C7"
+      accentHoverBackground:
+        name: "Accent Hover Background"
+        hexColor: "#5E57B0"
       controlBackground:
         name: "<name>"
         hexColor: "#27252A"
@@ -125,10 +128,10 @@ variations:
         hexColor: "#5E57B0"
       checkboxBorder:
         name: "checkboxBorder"
-        hexColor: "#6B6B6B"
+        hexColor: "#9B8C79"
       checkboxBackground:
         name: "checkboxBackground"
-        hexColor: "#3C3C3C"
+        hexColor: "#231E29"
       checkboxDisabledBackground:
         name: "checkboxDisabledBackground"
         hexColor: "#777777"
@@ -137,13 +140,13 @@ variations:
         hexColor: "#B4B4B4"
       checkboxForeground:
         name: "checkboxForeground"
-        hexColor: "#F0F0F0"
+        hexColor: "#C6C2C1"
       checkboxSelectedBackground:
         name: "checkboxSelectedBackground"
-        hexColor: "#252526"
+        hexColor: "#231E29"
       checkboxSelectedBorder:
         name: "checkboxSelectedBorder"
-        hexColor: "#9E9DA0"
+        hexColor: "#9B8C79"
       documentAreaHeaderNoTabsBackground:
         name: "documentAreaHeaderNoTabsBackground"
         hexColor: "#27252A"
@@ -323,19 +326,19 @@ variations:
         hexColor: "#369432"
       radioActiveBackground:
         name: "radioActiveBackground"
-        hexColor: "#3F3544"
+        hexColor: "#231E29"
       radioActiveBorder:
         name: "radioActiveBorder"
-        hexColor: "#007ACC"
+        hexColor: "#9B8C79"
       radioActiveForeground:
         name: "radioActiveForeground"
-        hexColor: "#FFFFFF"
+        hexColor: "#C6C2C1"
       radioInactiveBorder:
         name: "radioInactiveBorder"
-        hexColor: "#FFFFFF"
+        hexColor: "#9B8C79"
       radioInactiveHoverBackground:
         name: "radioInactiveHoverBackground"
-        hexColor: "#5A5D5E"
+        hexColor: "#231E29"
       scrollThumbBackground:
         name: "scrollThumbBackground"
         hexColor: "#2F2947"
@@ -582,6 +585,9 @@ variations:
         lerp: "0"
         transformId: "ccf13829-d3a7-48a4-a472-1dd92d79c2e5"
         baseColorId: "fgaccent"
+      accentHoverBackground:
+        name: "Accent Hover Background"
+        hexColor: "#3D7DCC"
       controlBackground:
         name: "Control Background"
         hexColor: "#EEEAE3"

@@ -20,7 +20,7 @@ class ValidationRuleTest {
      * Helper to create a location-aware Scalar node for testing.
      */
     private YamlScalarNode createMockScalar(Object value, int line, int col) {
-        YamlScalarNode node = new YamlScalarNode(line, col, null, String.valueOf(value), String.valueOf(value), QuoteStyle.PLAIN);
+        YamlScalarNode node = new YamlScalarNode(line, col, String.valueOf(value), String.valueOf(value), QuoteStyle.PLAIN);
         // Create a token so the node has coordinate metadata
         // YamlToken mockToken = new YamlToken(null, String.valueOf(value), value, 0, line, col);
         // node.setStartToken(mockToken);

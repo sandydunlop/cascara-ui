@@ -29,6 +29,7 @@ import io.github.qishr.cascara.ui.style.custom.ActivityBarStyle;
 import io.github.qishr.cascara.ui.style.custom.BadgeStyle;
 import io.github.qishr.cascara.ui.style.custom.CodeAreaStyle;
 import io.github.qishr.cascara.ui.style.custom.CustomStyle;
+import io.github.qishr.cascara.ui.style.custom.DocumentTabHeaderStyle;
 import io.github.qishr.cascara.ui.style.custom.MarkdownStyle;
 import io.github.qishr.cascara.ui.style.custom.SideBarStyle;
 import io.github.qishr.cascara.ui.style.custom.SvgIconStyle;
@@ -44,6 +45,7 @@ import io.github.qishr.cascara.ui.style.standard.ColorPickerStyle;
 import io.github.qishr.cascara.ui.style.standard.ComboBoxStyle;
 import io.github.qishr.cascara.ui.style.standard.DatePickerStyle;
 import io.github.qishr.cascara.ui.style.standard.DialogStyle;
+import io.github.qishr.cascara.ui.style.standard.HyperlinkStyle;
 import io.github.qishr.cascara.ui.style.standard.ListViewStyle;
 import io.github.qishr.cascara.ui.style.standard.MenuButtonStyle;
 import io.github.qishr.cascara.ui.style.standard.MenuStyle;
@@ -375,6 +377,7 @@ public class ThemeEngine implements AutoCloseable {
         controls.add(new CheckBoxStyle());
         controls.add(new RadioButtonStyle());
         controls.add(new TextInputStyle());
+        controls.add(new HyperlinkStyle());
         controls.add(new TitledPaneStyle());
         controls.add(new SplitPaneStyle());
         controls.add(new TabPaneStyle());
@@ -386,6 +389,7 @@ public class ThemeEngine implements AutoCloseable {
         controls.add(new ColorPickerStyle());
         controls.add(new MenuStyle());
 
+        controls.add(new DocumentTabHeaderStyle());
         controls.add(new ToolBarStyle());
         controls.add(new ListViewStyle());
         controls.add(new TableViewStyle());
@@ -468,6 +472,14 @@ public class ThemeEngine implements AutoCloseable {
         sb.append("    -color-control-foreground-dark: derive(-color-control-foreground, -50%);\n");
         sb.append("    -color-control-foreground-light: derive(-color-control-foreground, +30%);\n");
         sb.append("}\n");
+
+        try {
+            Files.writeString(Path.of("/Users/sandy/debug.css"), sb.toString());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         return sb.toString();
     }
 

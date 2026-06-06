@@ -12,17 +12,15 @@ public class HyperlinkStyle extends ControlStyle {
             .addDeclaration(FX_TEXT_FILL, values(color(ColorID.LINK_ACTIVE_FOREGROUND)), false)
             .build()
         );
+
         defineRule(newRule()
             .addSelector (classSelector("hyperlink:focused"))
             .addSelector (classSelector("hyperlink:hover"))
             .addDeclaration(FX_UNDERLINE, values(TRUE), false)
-            .build()
-        );
-        defineRule(newRule()
-            .addSelector (classSelector("hyperlink:hover"))
             .addDeclaration(FX_TEXT_FILL, values(color(ColorID.LINK_INACTIVE_FOREGROUND)), false)
             .build()
         );
+
         defineRule(newRule()
             .addSelector (classSelector("hyperlink:disabled"))
             .addDeclaration(FX_OPACITY, literal("0.4"), false)

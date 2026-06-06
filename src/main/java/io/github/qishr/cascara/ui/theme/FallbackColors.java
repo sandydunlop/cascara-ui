@@ -21,6 +21,7 @@ public class FallbackColors {
         alternatives.put(ColorID.ACTIVITYBAR_ACTIVE_BORDER, List.of(ColorID.TAB_ACTIVE_BORDER, ColorID.FOREGROUND));
 
         alternatives.put(ColorID.BUTTON_HOVER_BACKGROUND, List.of(ColorID.BUTTON_BACKGROUND));
+        alternatives.put(ColorID.ACCENT_HOVER_BACKGROUND, List.of(ColorID.ACCENT_BACKGROUND));
 
         alternatives.put(ColorID.CHECKBOX_SELECTED_BACKGROUND, List.of(ColorID.BUTTON_BACKGROUND));
         alternatives.put(ColorID.CHECKBOX_FOREGROUND, List.of(ColorID.BUTTON_FOREGROUND, ColorID.INPUT_FOREGROUND));
@@ -47,6 +48,9 @@ public class FallbackColors {
         alternatives.put(ColorID.MENU_BAR_SELECTION_FOREGROUND, List.of(ColorID.MENU_SELECTION_FOREGROUND, ColorID.BUTTON_FOREGROUND, ColorID.ACTIVITYBAR_ACTIVE_BACKGROUND));
 
         alternatives.put(ColorID.PANEL_BACKGROUND, List.of(ColorID.SIDEBAR_BACKGROUND, ColorID.EDITOR_BACKGROUND));
+
+        alternatives.put(ColorID.LINK_ACTIVE_FOREGROUND, List.of(ColorID.BUTTON_FOREGROUND));
+        alternatives.put(ColorID.LINK_INACTIVE_FOREGROUND, List.of(ColorID.BUTTON_FOREGROUND));
 
         alternatives.put(ColorID.NOTIFICATION_BACKGROUND, List.of(ColorID.SIDEBAR_BACKGROUND, ColorID.MENU_BACKGROUND));
         alternatives.put(ColorID.NOTIFICATION_FOREGROUND, List.of(ColorID.FOREGROUND, ColorID.SIDEBAR_FOREGROUND));

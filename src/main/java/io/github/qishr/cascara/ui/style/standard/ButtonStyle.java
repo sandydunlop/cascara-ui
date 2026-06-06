@@ -12,6 +12,7 @@ public class ButtonStyle extends ControlStyle {
             .addSelector (classSelector("toggle-button"))
             .addDeclaration(SHRINK_ANIMATE_ON_PRESS, literal(TRUE), false)
             .addDeclaration(FX_BACKGROUND_COLOR, values(color(ColorID.BUTTON_BACKGROUND)), false)
+            .addDeclaration(FX_BACKGROUND_RADIUS, values("2"), false)
             .addDeclaration(FX_BORDER_COLOR, values(TRANSPARENT), false)
             .addDeclaration(FX_BORDER_WIDTH, values(px(1)), false)
             .addDeclaration(FX_FONT_SIZE, literal("12"), false)

@@ -6,10 +6,11 @@ import io.github.qishr.cascara.common.util.Properties;
 
 public class ColorID {
 
-    // Color Groups
+    // Cascara Colors
 
     public static final String ACCENT_BACKGROUND = "accentBackground";
     public static final String ACCENT_FOREGROUND = "accentForeground";
+    public static final String ACCENT_HOVER_BACKGROUND = "accentHoverBackground";
     public static final String CONTROL_BACKGROUND = "controlBackground";
     public static final String CONTROL_FOREGROUND = "controlForeground";
     public static final String DOCUMENT_BACKGROUND = "documentBackground";
@@ -384,6 +385,7 @@ public class ColorID {
     public static final List<String> PALETTE_COLORS = List.of(
         ACCENT_BACKGROUND,
         ACCENT_FOREGROUND,
+        ACCENT_HOVER_BACKGROUND,
         CONTROL_BACKGROUND,
         CONTROL_FOREGROUND,
         DOCUMENT_BACKGROUND,
@@ -398,6 +400,7 @@ public class ColorID {
             mappedColors = new Properties();
             mappedColors.set(ACCENT_BACKGROUND, BUTTON_BACKGROUND);
             mappedColors.set(ACCENT_FOREGROUND, BUTTON_FOREGROUND);
+            mappedColors.set(ACCENT_HOVER_BACKGROUND, BUTTON_HOVER_BACKGROUND);
             mappedColors.set(EMPTY_BACKGROUND, SIDEBAR_BACKGROUND);
             mappedColors.set(DOCUMENT_BACKGROUND, EDITOR_BACKGROUND);
             mappedColors.set(CONTROL_FOREGROUND, ACTIVITYBAR_INACTIVE_FOREGROUND); // This could also be NUTTON_FOREGROUND or ICON_FOREGROUND

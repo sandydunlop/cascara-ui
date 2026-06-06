@@ -1,5 +1,6 @@
 package io.github.qishr.cascara.ui.control;
 
+import io.github.qishr.cascara.ui.style.custom.DocumentTabHeaderStyle;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +25,7 @@ public class ResourceTabPane extends VBox {
 
     public ResourceTabPane() {
         tabPane = new TabPane();
+        tabPane.getStyleClass().setAll(DocumentTabHeaderStyle.DOCUMENT_TAB_PANE);
         tabPane.getSelectionModel().selectedItemProperty().addListener(this::onSelectionChanged);
         VBox.setVgrow(tabPane, Priority.ALWAYS);
         HBox.setHgrow(tabPane, Priority.ALWAYS);
