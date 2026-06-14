@@ -11,6 +11,7 @@ import io.github.qishr.cascara.ui.api.render.RendererFactory;
 import io.github.qishr.cascara.ui.api.render.ScalarEditorRenderer;
 import io.github.qishr.cascara.ui.api.render.ScalarRenderer;
 import io.github.qishr.cascara.ui.form.FieldMetadata;
+import io.github.qishr.cascara.ui.l10n.Localization;
 import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.render.Renderers;
 
@@ -63,6 +64,15 @@ public class ColumnMetadata extends FieldMetadata {
     public ColumnMetadata(String name, String title) {
         super(name, null, null, null);
         if (title != null) setTitle(title);
+    }
+
+    public ColumnMetadata(String name) {
+        super(name, null, null, null);
+    }
+
+    public ColumnMetadata bindTitle(String key) {
+        Localization.bind(titleProperty(), key);
+        return this;
     }
 
     public TypeDescriptor<?> getTypeDescriptor() { return typeDescriptor; }

@@ -6,6 +6,7 @@ import java.time.format.FormatStyle;
 import java.util.Locale;
 import java.util.function.Consumer;
 
+import io.github.qishr.cascara.schema.structure.SchemaNode;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;
@@ -78,6 +79,57 @@ public class Localization {
         if (localeProperty() != null) {
             localeProperty().addListener((obs, old, newLocale) -> configurePicker.accept(newLocale));
         }
+    }
+
+    // cascara://organizer/CASC-00028C57
+    // TODO: %key% format
+    public static String getTitle(SchemaNode schema) {
+        if (schema == null) return null;
+        String titleKey = getTitleKey(schema);
+        if (titleKey != null) {
+            return localizer.format(titleKey);
+        }
+        return schema.getTitle();
+    }
+
+    public static String getDescription(SchemaNode schema) {
+        if (schema == null) return null;
+        String descriptionKey = getDescriptionKey(schema);
+        if (descriptionKey != null) {
+            return localizer.format(descriptionKey);
+        }
+        return schema.getDescription();
+    }
+
+    public static String getTitleKey(SchemaNode schema) {
+        return determineKey(schema.getTitle(), schema.getTitleKey());
+    }
+
+    public static String getDescriptionKey(SchemaNode schema) {
+        return determineKey(schema.getDescription(), schema.getDescriptionKey());
+    }
+
+    private static String determineKey(String value, String key) {
+        String extractedKey = extractKey(value);
+        if (extractedKey == null) {
+            if (key == null || key.isBlank()) {
+                return null;
+            }
+            return key;
+        }
+        return extractedKey;
+    }
+
+    private static String extractKey(String value) {
+        if (value == null) return null;
+        if (value.length() > 2) {
+            char first = value.charAt(0);
+            char last = value.charAt(value.length()-1);
+            if (first == '%' && last == '%') {
+                return value.substring(1, value.length()-1);
+            }
+        }
+        return null;
     }
 
     private static class DummyLocalizer implements Localizer {

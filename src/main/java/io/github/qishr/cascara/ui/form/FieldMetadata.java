@@ -35,6 +35,7 @@ import javafx.beans.property.StringProperty;
 
 public class FieldMetadata {
     private final StringProperty fieldName = new SimpleStringProperty();
+    private final StringProperty title = new SimpleStringProperty();
     private final SchemaNode fieldSchema;
     private final SchemaType schemaType;
     private final String format;
@@ -56,7 +57,6 @@ public class FieldMetadata {
     private Runnable onChange;
     private boolean isArray = false;
     private boolean isObject = false;
-    private String title = "";
 
     private final List<RendererFactory<?>> rendererFactories;
     private Renderers renderers = new Renderers(null, null, null);
@@ -98,7 +98,7 @@ public class FieldMetadata {
             schemaType = fieldSchema.getType();
             format = fieldSchema.getFormat();
             enumValues = findEnumValues(fieldSchema);
-            title = fieldSchema.getTitle();
+            title.set(fieldSchema.getTitle());
 
             if (fieldSchema.getExtension(Hidden.UI_HIDDEN) instanceof Boolean b) {
                 hidden = b;
@@ -168,6 +168,7 @@ public class FieldMetadata {
     }
 
     public StringProperty nameProperty() { return fieldName; }
+    public StringProperty titleProperty() { return title; }
 
     public void setDataContext(Map<String,Property<?>> context) { this.dataContext = context; }
     public void setColumnMetaList(Collection<ColumnMeta> v) { columnMetas = v; }
@@ -175,7 +176,7 @@ public class FieldMetadata {
     public void setRemoveRowHandler(Consumer<TableData> removeRow) { this.removeRow = removeRow; }
     public void setOnChange(Runnable onChange) { this.onChange = onChange; }
     public void setAllowEdit(boolean v) { allowEdit = v; }
-    public void setTitle(String v) { title = v; }
+    public void setTitle(String v) { title.set(v); }
 
     public boolean allowEdit() { return allowEdit; }
     public boolean allowDelete() { return allowDelete; }
@@ -194,7 +195,7 @@ public class FieldMetadata {
     public Runnable getAddRowHandler() { return addRowHandler; }
     public Consumer<TableData> getRemoveRowHandler() { return removeRow; }
     public Runnable getOnChange() { return onChange; }
-    public String getTitle() { return title; }
+    public String getTitle() { return title.get(); }
 
     public OptionProviderRegistry getOptionProviderRegistry() { return optionProviderRegistry; }
     public List<RendererFactory<? extends Renderer>> getRendererFactories() { return rendererFactories; }

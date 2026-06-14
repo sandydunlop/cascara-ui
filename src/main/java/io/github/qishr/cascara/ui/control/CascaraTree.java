@@ -290,6 +290,11 @@ public class CascaraTree<T extends ObservableTreeNode<T,?>> extends StackPane {
     @SuppressWarnings("unchecked")
     private TreeTableColumn<T,Object> createColumn(ColumnMetadata def) {
         TreeTableColumn<T,Object> col = new TreeTableColumn<>(def.getTitle());
+
+        def.titleProperty().addListener((obs,old,val) -> {
+            col.setText(val);
+        });
+
         if (def.getHeaderStyle() != null && !def.getHeaderStyle().isEmpty()) {
             col.getStyleClass().add(def.getHeaderStyle());
         }

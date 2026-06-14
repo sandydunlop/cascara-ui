@@ -317,6 +317,11 @@ public class CascaraTable extends StackPane {
 
     private TableColumn<ObservableTableData, ObservableValue<?>> createColumn(ColumnMetadata def) {
         TableColumn<ObservableTableData, ObservableValue<?>> col = new TableColumn<>(def.getTitle());
+
+        def.titleProperty().addListener((obs,old,val) -> {
+            col.setText(val);
+        });
+
         if (def.getHeaderStyle() != null && !def.getHeaderStyle().isEmpty()) {
             col.getStyleClass().add(def.getHeaderStyle());
         }
