@@ -85,6 +85,8 @@ public class ColorID {
     public static final String EDITOR_MATCH_BORDER = "editorMatchBorder";
     public static final String EDITOR_MATCH_HIGHLIGHT_BACKGROUND = "editorMatchHighlightBackground";
     public static final String EDITOR_MATCH_HIGHLIGHT_FOREGROUND = "editorMatchHighlightForeground";
+    public static final String EDITOR_WORD_HIGHLIGHT_BACKGROUND = "editorWordHighlightBackground";
+    public static final String EDITOR_WORD_HIGHLIGHT_STRONG_BACKGROUND = "editorWordHighlightStrongBackground";
     public static final String EDITOR_SELECTION_ACTIVE_BACKGROUND = "editorSelectionActiveBackground";
     public static final String EDITOR_SELECTION_FOREGROUND = "editorSelectionForeground";
     public static final String EDITOR_SELECTION_INACTIVE_BACKGROUND = "editorSelectionInactiveBackground";
@@ -92,7 +94,6 @@ public class ColorID {
     public static final String EDITOR_ERROR_FOREGROUND = "editorErrorForeground";
     public static final String EDITOR_WARN_FOREGROUND = "editorWarnForeground";
     public static final String EDITOR_INFO_FOREGROUND = "editorInfoForeground";
-
 
     public static final String GIT_UNTRACKED_FOREGROUND = "gitdecorationUntrackedForeground";
     public static final String GIT_MODIFIED_FOREGROUND = "gitdecorationModifiedForeground";

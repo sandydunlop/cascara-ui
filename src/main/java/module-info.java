@@ -50,6 +50,8 @@ module cascara.ui {
     opens io.github.qishr.cascara.ui.theme;
     opens io.github.qishr.cascara.ui.window;
 
+    opens io.github.qishr.cascara.ui.l10n to cascara.schema, cascara.lang.yaml;
+
     opens io.github.qishr.cascara.ui.data to cascara.schema;
     opens io.github.qishr.cascara.ui.menu to cascara.schema;
 

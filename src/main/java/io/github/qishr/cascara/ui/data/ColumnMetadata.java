@@ -104,8 +104,6 @@ public class ColumnMetadata extends FieldMetadata {
             Object o1 = v1.getValue();
             Object o2 = v2.getValue();
 
-            // System.out.println("o1 = " + o1.getClass().getSimpleName());
-
             if (typeDescriptor instanceof ScalarDescriptor descriptor) {
                 String s1 = descriptor.toPrimitive(o1).toString();
                 String s2 = descriptor.toPrimitive(o2).toString();
@@ -114,10 +112,6 @@ public class ColumnMetadata extends FieldMetadata {
             }
 
             if (o1 instanceof Comparable c1 && o2 instanceof Comparable c2) {
-                // if (c1 instanceof String s1 && c2 instanceof String s2) {
-                //     return s1.compareTo(s2);
-                // }
-
                 return c1.compareTo(c2);
             }
 

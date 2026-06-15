@@ -1,9 +1,6 @@
 package io.github.qishr.cascara.ui.render.standard;
 
 import java.net.URI;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import io.github.qishr.cascara.schema.SchemaKeyword;
@@ -12,15 +9,14 @@ import io.github.qishr.cascara.schema.rule.EnumRule;
 import io.github.qishr.cascara.schema.rule.ValidationRule;
 import io.github.qishr.cascara.ui.api.data.DataProvider;
 import io.github.qishr.cascara.ui.api.render.ScalarEditorRenderer;
-import io.github.qishr.cascara.ui.control.FilePicker;
 import io.github.qishr.cascara.ui.form.FieldMetadata;
 import io.github.qishr.cascara.ui.render.AbstractScalarRenderer;
+
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
 

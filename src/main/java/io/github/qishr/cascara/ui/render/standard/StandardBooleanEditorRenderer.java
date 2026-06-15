@@ -31,6 +31,7 @@ public class StandardBooleanEditorRenderer extends AbstractScalarRenderer implem
 
             checkBox.selectedProperty().addListener((obs,old,val) -> {
                 obj.set(val);
+                if (meta.getOnChange() != null) meta.getOnChange().run();
             });
 
             // TODO: Update from data

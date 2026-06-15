@@ -1,25 +1,31 @@
 package io.github.qishr.cascara.ui.l10n;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 import java.util.function.Consumer;
 
+import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
 import io.github.qishr.cascara.schema.structure.SchemaNode;
+import io.github.qishr.cascara.schema.util.SchemaGenerator;
+import io.github.qishr.cascara.ui.option.LanguageOption;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.util.StringConverter;
 
 public class Localization {
-    private static volatile Localizer localizer = new DummyLocalizer();
+    private static volatile UiLocalizer localizer = new DummyLocalizer();
 
-    public static void setLocalizer(Localizer customLocalizer) {
+    public static void setLocalizer(UiLocalizer customLocalizer) {
         localizer = customLocalizer != null ? customLocalizer : new DummyLocalizer();
     }
 
@@ -29,6 +35,19 @@ public class Localization {
 
     public static Locale getLocale() {
         return localeProperty().get();
+    }
+
+    // public static String getLanguageTag() {
+    //     Locale locale = getLocale();
+    //     return locale == null ? null : locale.toLanguageTag();
+    // }
+
+    public static String format(String key, Object... details) {
+        return localizer.format(key, details);
+    }
+
+    public static String format(DiagnosticCode diagnosticCode, Object... details) {
+        return localizer.format(diagnosticCode, details);
     }
 
     public static void bind(Labeled node, String key, Object... args) {
@@ -57,6 +76,11 @@ public class Localization {
         }
     }
 
+    // TODO: FieldLabel, Field, LabeedField
+    public static void bind() {
+
+    }
+
     public static void bindLocale(DatePicker picker) {
         // 1. Define the localized configuration engine
         Consumer<Locale> configurePicker = (locale) -> {
@@ -81,6 +105,10 @@ public class Localization {
         }
     }
 
+    //
+    // Schema Translation
+    //
+
     // cascara://organizer/CASC-00028C57
     // TODO: %key% format
     public static String getTitle(SchemaNode schema) {
@@ -101,21 +129,22 @@ public class Localization {
         return schema.getDescription();
     }
 
+    // cascara://organizer/CASC-00028C57
+    // TODO: names of title key and description key need to be user-overridable
     public static String getTitleKey(SchemaNode schema) {
-        return determineKey(schema.getTitle(), schema.getTitleKey());
+        Object extKey = schema.getExtension(SchemaGenerator.TITLE_KEY);
+        return determineKey(schema.getTitle(), extKey);
     }
 
     public static String getDescriptionKey(SchemaNode schema) {
-        return determineKey(schema.getDescription(), schema.getDescriptionKey());
+        Object extKey = schema.getExtension(SchemaGenerator.DESCRIPTION_KEY);
+        return determineKey(schema.getDescription(), extKey);
     }
 
-    private static String determineKey(String value, String key) {
+    private static String determineKey(String value, Object extKey) {
         String extractedKey = extractKey(value);
-        if (extractedKey == null) {
-            if (key == null || key.isBlank()) {
-                return null;
-            }
-            return key;
+        if (extKey instanceof String extValue) {
+            return extValue;
         }
         return extractedKey;
     }
@@ -132,10 +161,17 @@ public class Localization {
         return null;
     }
 
-    private static class DummyLocalizer implements Localizer {
+    //
+    //
+    //
+
+    private static class DummyLocalizer implements UiLocalizer {
         private ObjectProperty<Locale> locale = new SimpleObjectProperty<>();
         public DummyLocalizer() { locale.set(Locale.getDefault()); }
-        public String format(String code, Object... details) { return code; }
-        public ObjectProperty<Locale> activeLocaleProperty() { return locale; }
+        @Override public String format(String code, Object... details) { return code; }
+        @Override public String format(DiagnosticCode diagnosticCode, Object... details) { return diagnosticCode.getCode(); }
+        @Override public ObjectProperty<Locale> activeLocaleProperty() { return locale; }
+        @Override public ObservableList<LanguageOption> getLanguages() { return null; }
+        @Override public void registerTranslations(InputStream yamlStream) { }
     }
 }

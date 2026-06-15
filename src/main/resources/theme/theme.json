@@ -1,5 +1,6 @@
 {
-	"name": "Sandy's Theme",
+	"name": "Cascara OG",
+	"type": "dark",
     "semanticHighlighting": true,
 	"colors": {
 		"activityBar.activeBackground": "#27252a",
@@ -26,7 +27,6 @@
 
 		"checkbox.border": "#6B6B6B",
 		"checkbox.background": "#3c3c3c",
-		"checkbox.border": "#3c3c3c",
 		"checkbox.disabled.background": "#777777",
 		"checkbox.disabled.foreground": "#b4b4b4",
 		"checkbox.foreground": "#f0f0f0",
@@ -40,14 +40,41 @@
 		"dropdown.foreground": "#f0f0f0",
 
         "editor.background": "#1d1922",
-		"editor.findMatchBackground": "#1d1922",
-		"editor.findMatchBorder": "#e0caa9",
+
+		"editor.findMatchBackground": "#5a53a5",
+		"editor.findMatchBorder": "#494386",
 		"editor.findMatchForeground": "#e0caa9",
-		"editor.findMatchHighlightBackground": "#494386fe",
-		"editor.findMatchHighlightForeground": "#e0caa9f0",
-		"editor.foreground": "#c6c2c1",
-		"editor.selectionBackground": "#342b33",
+
+        // This must be translucent
+        "editor.findMatchHighlightBackground": "#49438650",
+
+        "editor.findMatchHighlightForeground": "#e0caa9AA",
+
+		"editor.selectionBackground": "#494386",
 		"editor.selectionForeground": "#e0caa9",
+
+        // This must be translucent
+        "editor.selectionHighlightBackground": "#ADD6FF26",
+
+        "selection.background": "#494386",
+
+        // This must be translucent
+        "editor.wordHighlightBackground": "#49438640",
+
+        // This must be translucent
+		"editor.wordHighlightStrongBackground": "#49438670",
+
+
+
+
+
+
+
+
+
+		"editor.foreground": "#c6c2c1",
+		// "editor.selectionBackground": "#342b33",
+		// "editor.selectionForeground": "#e0caa9",
 		"editorGroupHeader.noTabsBackground": "#27252a",
 		"editorGroupHeader.tabsBackground": "#27252a",
 
@@ -108,7 +135,7 @@
 		"scrollbarSlider.background": "#2f2947",
 		"scrollbarSlider.hoverBackground": "#494386",
 
-        "selection.background": "#342b33",
+        // "selection.background": "#342b33",
 
         "sideBar.background": "#231e29",
 		"sideBar.border": "#3f3544",
@@ -154,7 +181,7 @@
         "editor.inactiveSelectionBackground": "#3A3D41",
 		"editorIndentGuide.background1": "#404040",
 		"editorIndentGuide.activeBackground1": "#707070",
-		"editor.selectionHighlightBackground": "#ADD6FF26",
+
 		"list.dropBackground": "#383B3D",
 		"input.placeholderForeground": "#A6A6A6",
 		"ports.iconRunningProcessForeground": "#369432",
@@ -164,7 +191,7 @@
 		"list.activeSelectionIconForeground": "#FFF",
 		"terminal.inactiveSelectionBackground": "#3A3D41",
 		"widget.border": "#303031",
-		"widget.shadow": "#0000000c",
+		"widget.shadow": "#0000000c"
 
 
 
@@ -645,7 +672,11 @@
 		//"scmGraph.historyItemRefColor": "#3794ff",
 		//"scmGraph.historyItemRemoteRefColor": "#b180d7",
 		//"search.resultsInfoForeground": "#cccccca6",
+
+
 		//"searchEditor.findMatchBackground": "#494386a8",
+
+
 		//"settings.checkboxBackground": "#3c3c3c",
 		//"settings.checkboxBorder": "#3c3c3c",
 		//"settings.checkboxForeground": "#f0f0f0",

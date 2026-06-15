@@ -128,6 +128,11 @@ public class VSCodeTheme {
         mapColorId(map, ColorID.EDITOR_WARN_FOREGROUND, str("editorWarning.foreground"));
         mapColorId(map, ColorID.EDITOR_INFO_FOREGROUND, str("editorInfo.foreground"));
 
+        mapColorId(map, ColorID.EDITOR_WORD_HIGHLIGHT_BACKGROUND, str("editor.wordHighlightBackground"));
+        mapColorId(map, ColorID.EDITOR_WORD_HIGHLIGHT_STRONG_BACKGROUND, str("editor.wordHighlightStrongBackground"));
+
+
+
         mapColorId(map, ColorID.GIT_UNTRACKED_FOREGROUND, str("gitDecoration.untrackedResourceForeground"));
         mapColorId(map, ColorID.GIT_MODIFIED_FOREGROUND, str("gitDecoration.modifiedResourceForeground"));
 

@@ -14,6 +14,7 @@ import io.github.qishr.cascara.schema.rule.MaxLengthRule;
 import io.github.qishr.cascara.ui.api.UiDiagnosticCode;
 import io.github.qishr.cascara.ui.api.data.ObservableTableData;
 import io.github.qishr.cascara.ui.data.UiDataException;
+import io.github.qishr.cascara.ui.l10n.Localization;
 import io.github.qishr.cascara.ui.render.Renderers;
 
 import javafx.beans.Observable;
@@ -59,7 +60,16 @@ public class ObjectFieldFactory extends AbstractFieldFactory {
         if (title != null && !title.isBlank()) {
             labelText = title;
         }
+
         FieldLabel label = new FieldLabel(labelText);
+
+
+        String titleKey = Localization.getTitleKey(fieldSchema);
+        if (titleKey != null) {
+            Localization.bind(label.textProperty(), titleKey);
+        }
+
+
         LabeledField field = new LabeledField(label, null, valueField.getMetadata());
         field.setInnerField(valueField);
 
