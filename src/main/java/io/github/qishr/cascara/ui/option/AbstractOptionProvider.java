@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.qishr.cascara.common.util.Properties;
-import io.github.qishr.cascara.ui.api.ServicePropertyName;
 import io.github.qishr.cascara.ui.api.render.ScalarRenderer;
+import io.github.qishr.cascara.ui.service.ServicePropertyName;
 
 public abstract class AbstractOptionProvider implements OptionProvider {
     protected final List<Runnable> listeners = new ArrayList<>();

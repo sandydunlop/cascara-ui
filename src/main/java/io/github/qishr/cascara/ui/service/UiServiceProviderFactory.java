@@ -16,11 +16,9 @@ public class UiServiceProviderFactory extends ServiceProviderFactory {
     }
 
     public OptionProvider createOptionProvider(String name) throws ServiceException {
-        return (OptionProvider)createServiceProvider(
+        return createServiceProvider(
             OptionProvider.class,
-            CapabilityQueries.allOf(
-                CapabilityQueries.hasExactValue("name", name)
-            )
+            CapabilityQueries.hasExactValue(ServicePropertyName.NAME.asString(), name)
         );
     }
 }

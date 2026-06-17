@@ -6,8 +6,8 @@ import java.util.Map;
 
 import io.github.qishr.cascara.common.service.ServiceProviderLayer;
 import io.github.qishr.cascara.common.service.ServiceMetadata;
-import io.github.qishr.cascara.ui.api.ServicePropertyName;
 import io.github.qishr.cascara.ui.api.render.Renderer;
+import io.github.qishr.cascara.ui.service.ServicePropertyName;
 
 public abstract class AbstractSpiRendererFactory<T extends Renderer> {
     protected final Class<T> serviceType;

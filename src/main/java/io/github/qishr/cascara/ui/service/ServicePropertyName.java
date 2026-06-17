@@ -1,4 +1,4 @@
-package io.github.qishr.cascara.ui.api;
+package io.github.qishr.cascara.ui.service;
 
 public enum ServicePropertyName {
     CONTENT_TYPE("contentType"),

@@ -2,8 +2,8 @@ package io.github.qishr.cascara.ui.render;
 
 import io.github.qishr.cascara.common.util.Properties;
 import io.github.qishr.cascara.schema.SchemaType;
-import io.github.qishr.cascara.ui.api.ServicePropertyName;
 import io.github.qishr.cascara.ui.api.render.Renderer;
+import io.github.qishr.cascara.ui.service.ServicePropertyName;
 
 public abstract class AbstractRenderer implements Renderer {
     private final String contentType;
