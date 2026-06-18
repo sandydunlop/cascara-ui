@@ -115,13 +115,27 @@ public abstract class ObservableTreeNode<T extends ObservableTreeNode<T,V>,V ext
         return false;
     }
 
+    public String getTreePathInsertParent(String parentName) {
+        String path = getTreePath();
+        int i = path.indexOf("/");
+        String root = path.substring(0, i);
+        String subPath = path.substring(i);
+        return root + "/" + parentName + subPath;
+    }
+
     public String getTreePath() {
         String path = internalGetName();
         ObservableTreeNode<?,?> current = this;
+
         while (current.getParent() != null) {
             current = current.getParent();
-            path = current.internalGetName() + "/" + path;
+            if (current.getParent() == null) {
+                path = "#/" + path;
+            } else {
+                path = current.internalGetName() + "/" + path;
+            }
         }
+
         return path;
     }
 

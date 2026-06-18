@@ -10,13 +10,6 @@ module cascara.ui {
     requires transitive javafx.controls;
     requires javafx.graphics;
 
-    uses io.github.qishr.cascara.common.service.ServiceProvider;
-    uses io.github.qishr.cascara.ui.menu.SystemMenusService;
-
-    uses io.github.qishr.cascara.ui.api.render.OptionListEditor;
-    uses io.github.qishr.cascara.ui.api.render.ScalarEditorRenderer;
-    uses io.github.qishr.cascara.ui.api.render.ScalarRenderer;
-
     exports io.github.qishr.cascara.ui.api;
     exports io.github.qishr.cascara.ui.api.data;
     exports io.github.qishr.cascara.ui.option;
@@ -60,6 +53,19 @@ module cascara.ui {
     // For ObservableObject
     opens io.github.qishr.cascara.ui.data to cascara.schema;
     opens io.github.qishr.cascara.ui.menu to cascara.schema;
+
+    // SPI
+
+    uses io.github.qishr.cascara.common.service.ServiceProvider;
+
+    uses io.github.qishr.cascara.ui.api.render.OptionListEditor;
+    uses io.github.qishr.cascara.ui.api.render.ArrayEditorRenderer;
+    uses io.github.qishr.cascara.ui.api.render.ScalarEditorRenderer;
+    uses io.github.qishr.cascara.ui.api.render.ScalarRenderer;
+
+    uses io.github.qishr.cascara.ui.menu.SystemMenusService;
+
+    uses io.github.qishr.cascara.ui.option.OptionProvider;
 
     provides io.github.qishr.cascara.ui.api.render.ArrayEditorRenderer
         with io.github.qishr.cascara.ui.render.control.TableRenderer,

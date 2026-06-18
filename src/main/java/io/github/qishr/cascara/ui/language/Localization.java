@@ -17,6 +17,7 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
@@ -50,14 +51,14 @@ public class Localization {
     }
 
     @SuppressWarnings("unchecked")
-    public static void bind(Property<?> prop, String key, Object... args) {
+    public static void bind(Property<?> target, String key, Object... args) {
         InvalidationListener listener = null;
 
-        if (prop instanceof ObjectProperty objProp) {
+        if (target instanceof ObjectProperty objProp) {
             listener = o -> {
                 objProp.set(localizer.format(key, args));
             };
-        } else if (prop instanceof StringProperty stringProp) {
+        } else if (target instanceof StringProperty stringProp) {
             listener = o -> {
                 stringProp.setValue(localizer.format(key, args));
             };
@@ -71,9 +72,9 @@ public class Localization {
         }
     }
 
-    public static void bind(Labeled node, String key, Object... args) {
+    public static void bind(Labeled target, String key, Object... args) {
         InvalidationListener listener = o -> {
-            node.setText(localizer.format(key, args));
+            target.setText(localizer.format(key, args));
         };
         listener.invalidated(null);
         if (localizer.activeLocaleProperty() != null) {
@@ -81,9 +82,9 @@ public class Localization {
         }
     }
 
-    public static void bind(TextField node, String key, Object... args) {
+    public static void bind(TextField target, String key, Object... args) {
         InvalidationListener listener = o -> {
-            node.setText(localizer.format(key, args));
+            target.setText(localizer.format(key, args));
         };
         listener.invalidated(null);
         if (localizer.activeLocaleProperty() != null) {
@@ -91,8 +92,16 @@ public class Localization {
         }
     }
 
-    public static void bind(Tab node, String key, Object... args) {
-        InvalidationListener listener = o -> node.setText(localizer.format(key, args));
+    public static void bind(Tab target, String key, Object... args) {
+        InvalidationListener listener = o -> target.setText(localizer.format(key, args));
+        listener.invalidated(null);
+        if (localizer.activeLocaleProperty() != null) {
+            localizer.activeLocaleProperty().addListener(listener);
+        }
+    }
+
+    public static void bind(MenuItem target, String key, Object... args) {
+        InvalidationListener listener = o -> target.setText(localizer.format(key, args));
         listener.invalidated(null);
         if (localizer.activeLocaleProperty() != null) {
             localizer.activeLocaleProperty().addListener(listener);

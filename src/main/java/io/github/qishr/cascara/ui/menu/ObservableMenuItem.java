@@ -1,7 +1,6 @@
 package io.github.qishr.cascara.ui.menu;
 
 import io.github.qishr.cascara.common.diagnostic.GlobalReporter;
-import io.github.qishr.cascara.common.diagnostic.LocalizableException;
 import io.github.qishr.cascara.common.diagnostic.LocalizableRuntimeException;
 import io.github.qishr.cascara.common.diagnostic.Reporter;
 import io.github.qishr.cascara.common.diagnostic.code.GenericDiagnosticCode;
@@ -10,7 +9,7 @@ import io.github.qishr.cascara.schema.annotation.SchemaProperty;
 import io.github.qishr.cascara.ui.api.UiDiagnosticCode;
 import io.github.qishr.cascara.ui.api.UiException;
 import io.github.qishr.cascara.ui.data.ObservableTreeNode;
-import io.github.qishr.cascara.ui.data.UiDataException;
+import io.github.qishr.cascara.ui.language.Localization;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.Menu;
@@ -21,12 +20,9 @@ import javafx.scene.input.KeyCombination;
 
 @SchemaDefinition
 public class ObservableMenuItem extends ObservableTreeNode<ObservableMenuItem, Object> {
-    private static final Reporter REPORTER = GlobalReporter.forClass(ObservableMenuItem.class);
-
     public static final ObservableMenuItem SEPARATOR = new ObservableMenuItem();
 
-    // @SchemaProperty
-    // private ObjectProperty<String> name;
+    private static final Reporter REPORTER = GlobalReporter.forClass(ObservableMenuItem.class);
 
     @SchemaProperty
     private ObjectProperty<KeyCombination> accelerator;
@@ -48,28 +44,71 @@ public class ObservableMenuItem extends ObservableTreeNode<ObservableMenuItem, O
 
     private boolean isRoot;
     private boolean isSeparator;
+    private boolean isTranslatable;
+
     private MenuBar menuBar;
     private MenuItem fxMenuItem;
 
     /// Package-private constructor for separator menu items
     ObservableMenuItem() {
-        super(null, null);
+        super(null, "--");
         fxMenuItem = new SeparatorMenuItem();
         isSeparator = true;
     }
 
     /// Package-private constructor for menu bars
     ObservableMenuItem(MenuBar fxItem) {
-        super(null, null);
+        super(null, "#");
         menuBar = fxItem;
         isRoot = true;
     }
 
-    /// Package-private constructor for menus and menu items
-    ObservableMenuItem(String name, String text, MenuItem fxMenuItem) {
-        super(null, name);
+    private void translate() {
+        String nodeName = nodeNameProperty().get();
+
+        if (nodeName != null) {
+            REPORTER.debug("Menu item: " + nodeName);
+            if (isTranslatable) {
+                REPORTER.debug("  Translating");
+
+                String translationKey;
+
+                if (nodeName.contains("/")) {
+                    // Menu item has full translation key path
+                    translationKey = nodeName;
+                } else if (nodeName.contains(".")) {
+                    // Menu item has full translation key name
+                    translationKey = nodeName.replace(".", "/");
+                } else {
+                    // Menu item has only the leaf name
+                    REPORTER.debug("  Tree Path = " + getTreePath());
+
+                    translationKey = getTreePathInsertParent("menubar");
+
+                    if (fxMenuItem instanceof Menu) {
+                        translationKey = translationKey + "/$title";
+                    }
+                }
+
+                REPORTER.debug("  Translation Key = " + translationKey);
+
+                Localization.bind(fxMenuItem, translationKey);
+            } else {
+                REPORTER.debug("  Not translating");
+            }
+        }
+    }
+
+    ObservableMenuItem(String nodeName, String text, MenuItem fxMenuItem) {
+        super(null, cleanName(nodeName));
+
         this.text.set(text);
         fxMenuItem.setText(text);
+
+        if (nodeName != null && !nodeName.startsWith("#")) {
+            isTranslatable = true;
+        }
+
         this.fxMenuItem = fxMenuItem;
         if (fxMenuItem instanceof Menu fxMenu) {
             onShowing.addListener(i -> {
@@ -112,13 +151,19 @@ public class ObservableMenuItem extends ObservableTreeNode<ObservableMenuItem, O
     protected ObservableMenuItem self() { return this; }
 
     public ObservableMenuItem addMenu(String name, String text) {
-        ObservableMenuItem menu = ObservableMenus.createMenu(name, text);
+        ObservableMenuItem menu = ObservableMenuFactory.createMenu(name, text);
         getChildren().add(menu);
         return menu;
     }
 
     public ObservableMenuItem addMenuItem(String name, String text) {
-        ObservableMenuItem menuItem = ObservableMenus.createMenuItem(name, text);
+        ObservableMenuItem menuItem = ObservableMenuFactory.createMenuItem(name, text);
+        getChildren().add(menuItem);
+        return menuItem;
+    }
+
+    public ObservableMenuItem addMenuItem(String name, String text, MenuItem fxItem) {
+        ObservableMenuItem menuItem = ObservableMenuFactory.createMenuItem(name, text, fxItem);
         getChildren().add(menuItem);
         return menuItem;
     }
@@ -189,9 +234,9 @@ public class ObservableMenuItem extends ObservableTreeNode<ObservableMenuItem, O
     //
 
     @Override
-    protected void onChildAdded(ObservableMenuItem item) {
-        item.root = root;
-        if (item.fxMenuItem instanceof Menu fxMenu) {
+    protected void onChildAdded(ObservableMenuItem child) {
+        child.root = root;
+        if (child.fxMenuItem instanceof Menu fxMenu) {
             if (isRoot) {
                 menuBar.getMenus().add(fxMenu);
             } else {
@@ -205,26 +250,34 @@ public class ObservableMenuItem extends ObservableTreeNode<ObservableMenuItem, O
             }
             if (this.fxMenuItem instanceof Menu fxParentMenu) {
                 try {
-                    if (item.isSeparator) {
+                    if (child.isSeparator) {
                         fxParentMenu.getItems().add(new SeparatorMenuItem());
                     } else {
-                        fxParentMenu.getItems().add(item.fxMenuItem);
+                        fxParentMenu.getItems().add(child.fxMenuItem);
                     }
                 } catch (UnsupportedOperationException e) {
                     throw new UiException(e, GenericDiagnosticCode.UNSUPPORTED_OPERATION, e.getMessage());
                 }
             }
         }
+        child.translate();
     }
 
     @Override
-    protected void onChildRemoved(ObservableMenuItem item) {
+    protected void onChildRemoved(ObservableMenuItem child) {
         if (isRoot) {
             menuBar.getMenus().remove(fxMenuItem);
         } else {
             if (this.fxMenuItem instanceof Menu fxParentMenu) {
-                fxParentMenu.getItems().remove(item.fxMenuItem);
+                fxParentMenu.getItems().remove(child.fxMenuItem);
             }
         }
+    }
+
+    private static String cleanName(String name) {
+        if (name != null && (name.startsWith("$") || name.startsWith("#"))) {
+            return name.substring(1);
+        }
+        return name;
     }
 }

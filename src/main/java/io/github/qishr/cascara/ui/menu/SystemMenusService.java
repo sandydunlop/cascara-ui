@@ -1,22 +1,16 @@
 package io.github.qishr.cascara.ui.menu;
 
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public interface SystemMenusService {
-    public Menu buildAppMenu();
-    public Menu buildWindowMenu();
-    public void integrate(Stage stage, MenuBar menuBar, Menu appMenu);
-    public void setAppName(String name);
+    ObservableMenuItem buildAppMenu(String appName);
+    ObservableMenuItem buildWindowMenu();
 
-    public void setOnAbout(MenuOptionHandler handler);
-    public void setOnSettings(MenuOptionHandler handler);
-    public void setOnQuit(MenuOptionHandler handler);
+    void setMenuRoot(ObservableMenuItem menuRoot);
+    void integrate(Stage stage);
 
-    public interface MenuOptionHandler {
-        void onMenuOption(MenuItem i);
-    }
+    void setOnAbout(Runnable handler);
+    void setOnSettings(Runnable handler);
+    void setOnQuit(Runnable handler);
 }
 

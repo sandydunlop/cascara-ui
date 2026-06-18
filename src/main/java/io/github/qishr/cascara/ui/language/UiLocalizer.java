@@ -183,7 +183,8 @@ public class UiLocalizer implements ObservableLocalizer {
         try {
             return MessageFormat.format(pattern, args);
         } catch (IllegalArgumentException e) {
-            return String.format(DiagnosticLocalizer.FORMATTING_ERROR, key, pattern);
+            REPORTER.error(e, GenericDiagnosticCode.MESSAGE_FORMATTING_ERROR, key, pattern);
+            return "!!" + key;
         }
     }
 
@@ -193,18 +194,22 @@ public class UiLocalizer implements ObservableLocalizer {
         if (diagnosticCode.getCode() == null || diagnosticCode.getCode().isEmpty()) {
             return String.format(DiagnosticLocalizer.FORMATTING_ERROR, diagnosticCode.getCode(), diagnosticCode.getMessage());
         }
-        String pattern = getPattern("diagnostic." + diagnosticCode.getCode());
+        String pattern = getPattern("diagnostic/" + diagnosticCode.getCode());
         if (pattern == null) {
             try {
                 return MessageFormat.format(diagnosticCode.getMessage(), args);
             } catch (IllegalArgumentException e) {
-                return String.format(DiagnosticLocalizer.FORMATTING_ERROR, diagnosticCode.getCode(), diagnosticCode.getMessage());
+                REPORTER.error(e, GenericDiagnosticCode.DIAGNOSTIC_FORMATTING_ERROR, diagnosticCode.getCode(), diagnosticCode.getMessage());
+                return "!!" + diagnosticCode.getCode();
+                // return String.format(DiagnosticLocalizer.FORMATTING_ERROR, diagnosticCode.getCode(), diagnosticCode.getMessage());
             }
         }
         try {
             return MessageFormat.format(pattern, args);
         } catch (IllegalArgumentException e) {
-            return String.format(DiagnosticLocalizer.FORMATTING_ERROR, diagnosticCode.getCode(), pattern);
+            REPORTER.error(e, GenericDiagnosticCode.DIAGNOSTIC_FORMATTING_ERROR, diagnosticCode.getCode(), pattern);
+            return "!!" + diagnosticCode.getCode();
+            // return String.format(DiagnosticLocalizer.FORMATTING_ERROR, diagnosticCode.getCode(), pattern);
         }
     }
 
@@ -239,7 +244,19 @@ public class UiLocalizer implements ObservableLocalizer {
     }
 
     private Object resolveKey(String key, Map<String,Object> languageTree) {
-        String[] parts = key.split("\\.");
+        if (key.startsWith("#/")) {
+            key = key.substring(2);
+        } else if (key.startsWith("/")) {
+            key = key.substring(1);
+        }
+
+        String[] parts;
+        if (key.contains(".")) {
+            parts = key.split("\\.");
+        } else {
+            parts = key.split("/");
+        }
+
         Object current = languageTree;
         for (String part : parts) {
             if (current instanceof Map<?, ?> map) {
