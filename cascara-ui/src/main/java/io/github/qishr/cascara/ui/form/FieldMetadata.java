@@ -20,8 +20,9 @@ import io.github.qishr.cascara.common.diagnostic.code.GenericDiagnosticCode;
 import io.github.qishr.cascara.ui.data.UiDataException;
 import io.github.qishr.cascara.ui.option.OptionProvider;
 import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
-import io.github.qishr.cascara.ui.render.Renderers;
+import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
+import io.github.qishr.cascara.ui.render.Renderers;
 import io.github.qishr.cascara.ui.schema.DisplayColumns;
 import io.github.qishr.cascara.ui.schema.DisplayToggle;
 import io.github.qishr.cascara.ui.schema.Hidden;
@@ -58,7 +59,7 @@ public class FieldMetadata {
 
     // private final List<RendererFactory<?>> rendererFactories;
     private final RendererFactory rendererFactory;
-    private Renderers renderers = new Renderers(null, null, null);
+    private Renderers renderers;
 
     public static class ColumnMeta {
         private String name = "";

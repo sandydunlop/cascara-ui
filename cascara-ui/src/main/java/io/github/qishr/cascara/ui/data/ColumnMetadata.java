@@ -11,9 +11,9 @@ import io.github.qishr.cascara.ui.api.render.ScalarRenderer;
 import io.github.qishr.cascara.ui.form.FieldMetadata;
 import io.github.qishr.cascara.ui.language.Localization;
 import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
-import io.github.qishr.cascara.ui.render.Renderers;
+import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
-
+import io.github.qishr.cascara.ui.render.Renderers;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -38,7 +38,7 @@ public class ColumnMetadata extends FieldMetadata {
 
         super(name, schema, optionProviderRegistry, rendererFactory);
         if (title != null) setTitle(title);
-        setRenderers(new Renderers(rendererFactory, this));
+        setRenderers(new RendererAllocator(rendererFactory).allocate(this));
     }
 
     public ColumnMetadata(String name, String title, SchemaNode schema,
@@ -47,7 +47,7 @@ public class ColumnMetadata extends FieldMetadata {
 
         super(name, schema, optionProviderRegistry, rendererFactory);
         if (title != null) setTitle(title);
-        setRenderers(new Renderers(rendererFactory, this));
+        setRenderers(new RendererAllocator(rendererFactory).allocate(this));
     }
 
     public ColumnMetadata(String name, String title, Renderer renderer) {
@@ -98,6 +98,7 @@ public class ColumnMetadata extends FieldMetadata {
     public ColumnMetadata setHeaderStyle(String value) { this.headerStyle = value; return this; }
     public ColumnMetadata setAllowEdit(boolean v) { allowEdit = v; return this; }
 
+    @SuppressWarnings("unchecked")
     private void configureComparator() {
         comparator = (ObservableValue<?> v1, ObservableValue<?> v2) -> {
             Object o1 = v1.getValue();

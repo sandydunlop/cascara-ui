@@ -16,7 +16,6 @@ import io.github.qishr.cascara.ui.api.data.ObservableTableData;
 import io.github.qishr.cascara.ui.data.ObservableObject;
 import io.github.qishr.cascara.ui.data.UiDataException;
 import io.github.qishr.cascara.ui.language.Localization;
-import io.github.qishr.cascara.ui.render.Renderers;
 
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
@@ -123,7 +122,7 @@ public class ObjectFieldFactory extends AbstractFieldFactory {
         }
 
         FieldMetadata meta = new FieldMetadata(fieldName, fieldSchema, optionProviderRegistry, rendererFactory);
-        meta.setRenderers(new Renderers(rendererFactory, meta));
+        meta.setRenderers(rendererAllocator.allocate(meta));
         Observable data = object.getObservablesMap().get(fieldName);
         if (data == null) {
             throw new UiDataException(UiDiagnosticCode.PROPERTY_NOT_FOUND_IN_MAP, object.getClass().getSimpleName(), fieldName);

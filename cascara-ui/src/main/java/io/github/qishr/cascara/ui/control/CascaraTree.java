@@ -389,7 +389,7 @@ public class CascaraTree<T extends ObservableTreeNode<T,?>> extends StackPane {
                             }
                             if (item instanceof Observable obs) {
                                 RenderDispatcher.render(this, obs, null, meta);
-                            } else if (meta.getRenderers().getScalarRenderer() instanceof ScalarRenderer renderer) {
+                            } else if (meta.getRenderers().scalarRenderer() instanceof ScalarRenderer renderer) {
                                 renderer.render(this, item, null, meta);
                             } else if (item instanceof ObservableObject object) {
                                 this.setText(object.getString(columnName));

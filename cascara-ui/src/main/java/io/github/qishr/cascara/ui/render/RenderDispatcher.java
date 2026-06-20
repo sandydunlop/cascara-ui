@@ -43,8 +43,14 @@ public class RenderDispatcher {
 
         Renderers renderers = meta.getRenderers();
 
+        if (renderers == null) {
+            // throw new LocalizableRuntimeException(GenericDiagnosticCode.UNEXPECTED_NULL, "renderers");
+            renderPlainText(view, data);
+            return null;
+        }
+
         if (data instanceof ObservableList list) {
-            ArrayEditorRenderer renderer = renderers.getArrayEditorRenderer();
+            ArrayEditorRenderer renderer = renderers.arrayEditorRenderer();
             if (renderer != null) {
                 control = renderer.render(view, list, dataProvider, meta);
             } else {
@@ -81,14 +87,14 @@ public class RenderDispatcher {
                 // StandardStringRenderer renderer = new StandardStringRenderer();
                 // renderer.render(view, objectProperty, dataProvider, meta);
 
-            } else if (meta.allowEdit() && renderers.getScalarEditorRenderer() != null) {
+            } else if (meta.allowEdit() && renderers != null && renderers.scalarEditorRenderer() != null) {
                 boolean switchable = meta.hasDisplayToggle();
-                if (renderers.getScalarRenderer() != null && switchable) {
+                if (renderers.scalarRenderer() != null && switchable) {
                     renderSwitchableView(view, data, dataProvider,renderers,  meta);
                 } else {
-                    control = renderers.getScalarEditorRenderer().render(view, data, dataProvider, meta);
+                    control = renderers.scalarEditorRenderer().render(view, data, dataProvider, meta);
                 }
-            }  else if (renderers.getScalarRenderer() instanceof ScalarRenderer renderer) {
+            }  else if (renderers != null && renderers.scalarRenderer() instanceof ScalarRenderer renderer) {
                 control = renderer.render(view, objectProperty.getValue(), dataProvider, meta);
             } else {
                 Object value = objectProperty.getValue();
@@ -101,13 +107,20 @@ public class RenderDispatcher {
                 }
                 view.setGraphic(null);
             }
-        } else if (renderers.getScalarRenderer() != null) {
-            control = renderers.getScalarRenderer().render(view, data, dataProvider, meta);
+        } else if (renderers != null && renderers.scalarRenderer() != null) {
+            control = renderers.scalarRenderer().render(view, data, dataProvider, meta);
         } else if (data instanceof ObservableObject object) {
             StandardStringRenderer renderer = new StandardStringRenderer();
             renderer.render(view, object.displayStringProperty(), dataProvider, meta);
             // view.setText(object.displayStringProperty().get());
-        } else if (data instanceof ObservableValue v){
+        } else {
+            renderPlainText(view, data);
+        }
+        return control;
+    }
+
+    private static void renderPlainText(Labeled view, Observable data) {
+        if (data instanceof ObservableValue v){
             // If none of the above worked, check if it's a table data objects and extract its display value
             Object obj = v.getValue();
             String displayString = "";
@@ -134,7 +147,6 @@ public class RenderDispatcher {
             view.setText(data.toString());
             view.setGraphic(null);
         }
-        return control;
     }
 
     private static String formatDisplayString(ObjectProperty<?> objectProperty, String displayStringFormat) {
@@ -176,8 +188,8 @@ public class RenderDispatcher {
         // 1. Create the two states
         Label viewNode = new Label();
         Label editorNode = new Label();
-        renderers.getScalarRenderer().render(viewNode, property, dataProvider, meta);
-        renderers.getScalarEditorRenderer().render(editorNode, property, dataProvider, meta);
+        renderers.scalarRenderer().render(viewNode, property, dataProvider, meta);
+        renderers.scalarEditorRenderer().render(editorNode, property, dataProvider, meta);
 
         // 2. Initial State
         editorNode.setOpacity(0);

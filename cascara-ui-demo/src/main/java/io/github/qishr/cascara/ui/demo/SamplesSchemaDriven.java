@@ -24,7 +24,7 @@ public class SamplesSchemaDriven {
         Node[] controls = new Node[] {
             // Row 0
             factory.createField("sampleEnum"),
-            factory.createField("sampleText")
+            factory.createField("sampleText"),
         };
 
         GridPane grid = layout(controls);

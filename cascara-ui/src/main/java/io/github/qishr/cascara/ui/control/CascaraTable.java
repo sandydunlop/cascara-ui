@@ -384,7 +384,12 @@ public class CascaraTable extends StackPane {
                             if (!allowEdit) {
                                 meta.setAllowEdit(false);
                             }
-                            RenderDispatcher.render(this, item, null, meta);
+                            try {
+                                RenderDispatcher.render(this, item, null, meta);
+                            } catch (Exception e) {
+                                System.out.println("Table failed to render " + meta.getName());
+                                e.printStackTrace();
+                            }
                         }
                     }
                 };

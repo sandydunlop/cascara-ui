@@ -9,6 +9,7 @@ import io.github.qishr.cascara.common.service.ServiceProviderLayer;
 import io.github.qishr.cascara.ui.api.data.DataProvider;
 import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.render.RenderDispatcher;
+import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
 
 import javafx.collections.ObservableList;
@@ -31,12 +32,14 @@ public abstract class AbstractFieldFactory {
     protected DataProvider dataProvider;
     protected OptionProviderRegistry optionProviderRegistry;
     protected RendererFactory rendererFactory;
+    protected RendererAllocator rendererAllocator;
 
     protected AbstractFieldFactory(ServiceProviderLayer splCtx) {
         if (splCtx == null) {
             splCtx = ServiceProviderLayer.getRootLayer();
         }
         rendererFactory = new RendererFactory(splCtx);
+        rendererAllocator = new RendererAllocator(rendererFactory);
     }
 
     public URI getUri() { return uri; }

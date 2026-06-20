@@ -13,7 +13,7 @@ import io.github.qishr.cascara.ui.form.FieldMetadata;
 import io.github.qishr.cascara.ui.form.FieldMetadata.ColumnMeta;
 import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.render.AbstractArrayRenderer;
-import io.github.qishr.cascara.ui.render.Renderers;
+import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
@@ -35,6 +35,7 @@ public class TableRenderer extends AbstractArrayRenderer implements ArrayEditorR
 
         OptionProviderRegistry optionProviderRegistry = tableMeta.getOptionProviderRegistry();
         RendererFactory rendererFactory = tableMeta.getRendererFactory();
+        RendererAllocator rendererAllocator = new RendererAllocator(rendererFactory);
         this.tableMeta = tableMeta;
 
         // Bind height to: (Number of Items * Row Height) + Header Height + Border
@@ -66,7 +67,7 @@ public class TableRenderer extends AbstractArrayRenderer implements ArrayEditorR
             boolean isIdField = columnName.toLowerCase().equals("id");
 
             ColumnMetadata columnMeta = new ColumnMetadata(columnName, columnTitle, columnSchema, optionProviderRegistry, rendererFactory);
-            columnMeta.setRenderers(new Renderers(rendererFactory, columnMeta));
+            columnMeta.setRenderers(rendererAllocator.allocate(columnMeta));
 
             if (columnMeta.isHidden() || isIdField) {
                 continue;
