@@ -1,0 +1,33 @@
+meta:
+  lang: "ar-AE"
+  title: "العربية"
+
+app:
+  window-title: "عرض توضيحي لـ Cascara UI ({0})"
+
+enum:
+  sample-enum:
+    ONE: "واحد"
+    TWO: "اثنين"
+    THREE: "ثلاثة"
+
+label:
+  theme: "النمط:"
+  language: "اللغة:"
+
+title:
+  button: "زر"
+  check-box: "مربع اختيار"
+  hyperlink: "رابط تشعبي"
+  label: "التسمية"
+  menu-button: "زر القائمة"
+  radio-button: "زر الاختيار"
+  split-menu-button: "زر القائمة المنقسمة"
+  system: "نظام"
+  text-field: "حقل النص"
+  toggle-button: "زر التبديل"
+
+  controls: "عناصر التحكم"
+  schema-driven-controls: "عناصر التحكم المستندة إلى المخطط"
+  lists: "القوائم"
+  boxes: "الصناديق"

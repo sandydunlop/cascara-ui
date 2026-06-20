@@ -1,0 +1,79 @@
+plugins {
+    id 'application'
+    id 'io.github.qishr.cascara-meta.java-library' version '0.1.0'
+    id "io.github.qishr.cascara-meta.publish" version "0.1.0"
+    id("org.openjfx.javafxplugin") version "0.1.0"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation(platform("io.github.qishr:cascara-meta-bom:0.1.11"))
+
+    // JUnit 5 (versions from BOM)
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Mockito (versions from BOM)
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+
+    // Cascara modules
+    implementation "io.github.qishr:cascara-common"
+    implementation "io.github.qishr:cascara-common-io"
+    implementation "io.github.qishr:cascara-lang-json"
+    implementation "io.github.qishr:cascara-lang-xml"
+    implementation "io.github.qishr:cascara-lang-yaml"
+    implementation "io.github.qishr:cascara-schema"
+
+    implementation(project(":cascara-ui"))
+}
+
+
+javafx {
+    version = "25"
+    modules = [ 'javafx.controls', 'javafx.graphics' ]
+}
+
+
+application {
+    mainClass.set("io.github.qishr.cascara.ui.demo.Launcher")
+    mainModule.set("cascara.ui.demo")
+    // applicationDefaultJvmArgs = ['--add-reads', 'cascara.ui=ALL-UNNAMED']
+}
+
+
+tasks.withType(JavaExec) {
+    jvmArgs = [ //'--add-reads', 'cascara.ui=ALL-UNNAMED',
+               '--enable-native-access=javafx.graphics',
+               '--enable-native-access=javafx.media'
+            ]
+}
+
+
+// tasks.named('run', JavaExec) {
+//     if (project.hasProperty('excludeMacos')) {
+
+//         def macosFilter = { file ->
+//             !file.name.contains('cascara.macos.menus') && !file.name.contains('nsmenufx')
+//         }
+
+//         classpath = classpath.filter(macosFilter)
+
+//         // Note: We avoid referencing 'modulePath' directly, as its public availability is unreliable.
+//         // Filtering the classpath is sufficient to remove the JARs from the runtime environment,
+//         // which prevents both native hooks and the ServiceLoader from finding them.
+
+//         println("INFO: macOS module and nsmenufx successfully removed from run classpath/modulepath.")
+//     }
+// }
+
+
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:-missing', '-quiet')
+}

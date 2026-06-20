@@ -1,0 +1,33 @@
+meta:
+  lang: "fr-FR"
+  title: "Français"
+
+app:
+  window-title: "Démonstration de Cascara UI ({0})"
+
+enum:
+  sample-enum:
+    ONE: "Un"
+    TWO: "Deux"
+    THREE: "Trois"
+
+label:
+  theme: "Thème:"
+  language: "Langue:"
+
+title:
+  button: "Bouton"
+  check-box: "Case à cocher"
+  hyperlink: "Lien hypertexte"
+  label: "Étiquette"
+  menu-button: "Bouton de menu"
+  radio-button: "Bouton radio"
+  split-menu-button: "Bouton de menu partagé"
+  system: "Système"
+  text-field: "Champ de texte"
+  toggle-button: "Bouton bascule"
+
+  controls: "Contrôles"
+  schema-driven-controls: "Contrôles pilotés par schéma"
+  lists: "Listes"
+  boxes: "Boîtes"
