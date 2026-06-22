@@ -12,17 +12,23 @@ enum:
     THREE: "Three"
 
 label:
-  theme: "Theme:"
   language: "Language:"
+  search: "Search:"
+  theme: "Theme:"
+
+text:
+  sample-description: "Sample description."
 
 title:
   button: "Button"
   check-box: "Check Box"
+  default: "Default"
   hyperlink: "Hyperlink"
   label: "Label"
   menu-button: "Menu Button"
   radio-button: "Radio Button"
-  schema-driven: "Schema-Driven"
+  sample-enum: "Sample Enum"
+  sample-text: "Sample Text"
   split-menu-button: "Split Menu Button"
   system: "System"
   text-field: "Text Field"

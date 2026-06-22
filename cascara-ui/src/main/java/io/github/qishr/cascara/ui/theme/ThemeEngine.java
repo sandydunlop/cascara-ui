@@ -26,6 +26,7 @@ import io.github.qishr.cascara.ui.color.ColorException;
 import io.github.qishr.cascara.ui.color.ColorUtil;
 import io.github.qishr.cascara.ui.option.Option;
 import io.github.qishr.cascara.ui.option.OptionProvider;
+import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.option.SimpleStringOption;
 import io.github.qishr.cascara.ui.option.StringOption;
 import io.github.qishr.cascara.ui.style.ControlStyle;
@@ -122,12 +123,12 @@ public class ThemeEngine {
         return instance;
     }
 
-    public SimpleObjectProperty<Option> activeThemeOptionProperty() {
-        return activeThemeOption;
+    public static SimpleObjectProperty<Option> activeThemeOptionProperty() {
+        return instance().activeThemeOption;
     }
 
-    public SimpleObjectProperty<Option> activeVariationOptionProperty() {
-        return activeVariationOption;
+    public static SimpleObjectProperty<Option> activeVariationOptionProperty() {
+        return instance().activeVariationOption;
     }
 
     // @Override
@@ -143,7 +144,9 @@ public class ThemeEngine {
             try {
                 instance.themeOptionProvider = new ThemeOptionProvider();
                 instance.themeOptionProvider.initialize();
+                OptionProviderRegistry.register(instance.themeOptionProvider);
             } catch (LocalizableRuntimeException e) {
+                e.printStackTrace();
             }
         }
         return instance.themeOptionProvider;
@@ -154,6 +157,7 @@ public class ThemeEngine {
         if (instance.variationOptionProvider == null) {
             instance.variationOptionProvider = new VariationOptionProvider();
             instance.variationOptionProvider.initialize();
+            OptionProviderRegistry.register(instance.variationOptionProvider);
         }
         return instance.variationOptionProvider;
     }

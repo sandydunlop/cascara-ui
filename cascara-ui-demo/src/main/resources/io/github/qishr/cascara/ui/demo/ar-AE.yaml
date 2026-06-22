@@ -12,16 +12,23 @@ enum:
     THREE: "ثلاثة"
 
 label:
-  theme: "النمط:"
   language: "اللغة:"
+  search: "يبحث:"
+  theme: "النمط:"
+
+text:
+  sample-description: "وصف العينة."
 
 title:
   button: "زر"
   check-box: "مربع اختيار"
+  default: "تقصير"
   hyperlink: "رابط تشعبي"
   label: "التسمية"
   menu-button: "زر القائمة"
   radio-button: "زر الاختيار"
+  sample-enum: "تعداد نموذجي"
+  sample-text: "نص نموذجي"
   split-menu-button: "زر القائمة المنقسمة"
   system: "نظام"
   text-field: "حقل النص"

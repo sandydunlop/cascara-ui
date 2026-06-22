@@ -8,6 +8,7 @@ import io.github.qishr.cascara.ui.option.OptionProvider;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ObservableList;
+import javafx.geometry.NodeOrientation;
 
 public interface ObservableLocalizer extends Localizer, DiagnosticLocalizer {
     ObservableList<Option> getLanguageOptions();
@@ -15,4 +16,7 @@ public interface ObservableLocalizer extends Localizer, DiagnosticLocalizer {
     ReadOnlyObjectWrapper<LanguageOption> activeLanguageOptionProperty();
     OptionProvider getLanguageOptionProvider();
     void setActiveLanguage(String languageTag);
+    NodeOrientation getDirection();
+    String formatWithDefault(String defaultText, String key, Object... args);
+    void setActiveLanguage(Option language);
 }

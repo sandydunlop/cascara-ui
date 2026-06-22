@@ -12,16 +12,23 @@ enum:
     THREE: "Tres"
 
 label:
-  theme: "Tema:"
   language: "Idioma:"
+  search: "Buscar:"
+  theme: "Tema:"
+
+text:
+  sample-description: "Descripción de la muestra."
 
 title:
   button: "Botón"
   check-box: "Casilla de verificación"
+  default: "Por defecto"
   hyperlink: "Hipervínculo"
   label: "Etiqueta"
   menu-button: "Botón de menú"
   radio-button: "Botón de opción"
+  sample-enum: "Enumeración de ejemplo"
+  sample-text: "Texto de ejemplo"
   split-menu-button: "Botón de menú dividido"
   system: "Sistema"
   text-field: "Campo de texto"

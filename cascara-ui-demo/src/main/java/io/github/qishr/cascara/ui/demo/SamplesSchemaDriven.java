@@ -2,11 +2,14 @@ package io.github.qishr.cascara.ui.demo;
 
 import io.github.qishr.cascara.ui.demo.SampleData.SampleEnum;
 import io.github.qishr.cascara.ui.form.Field;
+import io.github.qishr.cascara.ui.form.LabelPosition;
 import io.github.qishr.cascara.ui.form.ObjectFieldFactory;
-
+import io.github.qishr.cascara.ui.language.Localization;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -26,17 +29,10 @@ public class SamplesSchemaDriven {
             factory.createLabeledField("sampleText"),
         };
 
-        GridPane grid = layout(fields);
+        Node controls = layoutControls(fields);
+        Node search = buildSearchBox(fields);
 
-        HBox searchBox = new HBox(20);
-        TextField searchText = new TextField();
-        for (Field field : fields) {
-            field.queryProperty().bind(searchText.textProperty());
-        }
-
-        searchBox.getChildren().add(searchText);
-
-        view.getChildren().addAll(searchBox, grid);
+        view.getChildren().addAll(search, controls);
         view.setAlignment(Pos.TOP_CENTER);
         view.setPadding(new Insets(20, 10, 10, 10));
     }
@@ -45,7 +41,21 @@ public class SamplesSchemaDriven {
         return view;
     }
 
-    private GridPane layout(Field[] fields) {
+    private HBox buildSearchBox(Field[] fields) {
+        HBox searchBox = new HBox(8);
+        Localization.bindDirection(searchBox);
+        Label searchLabel = new Label("Search:");
+        Localization.bind(searchLabel, "label.search");
+        TextField searchText = new TextField();
+        searchBox.getChildren().addAll(searchLabel, searchText);
+        searchBox.setAlignment(Pos.CENTER);
+        for (Field field : fields) {
+            field.queryProperty().bind(searchText.textProperty());
+        }
+        return searchBox;
+    }
+
+    private GridPane layoutControls(Field[] fields) {
         GridPane grid = new GridPane();
         grid.setHgap(20);
         grid.setVgap(20);
@@ -55,6 +65,8 @@ public class SamplesSchemaDriven {
         int col = 0;
 
         for (Field field : fields) {
+            field.setLabelPosition(LabelPosition.ABOVE);
+
             VBox container = new VBox();
             container.setPadding(new Insets(20));
             container.setAlignment(Pos.CENTER);

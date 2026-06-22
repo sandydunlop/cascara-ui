@@ -24,29 +24,23 @@ public class FieldLabel extends VBox {
     }
 
     public FieldLabel(String translationKey, String text) {
-
-        // cascara://organizer/CASC-0004CE77
-
         this.query.addListener((obs,old,val) -> {
-            System.out.println("FieldLabel query listener");
             formatText();
         });
         this.text.addListener((obs,old,val) -> {
-            System.out.println("FieldLabel text listener");
             formatText();
         });
 
-
         if (translationKey != null) {
-            Localization.bind(this.text, translationKey);
+            Localization.bind(this.text, translationKey).withDefault(text);
         } else {
             this.text.set(text);
         }
 
         formatText();
 
-        setMinHeight(8);
-        setSpacing(2);
+        // setMinHeight(8);
+        // setSpacing(2);
     }
 
     public SimpleStringProperty queryProperty() { return query; }
@@ -89,9 +83,6 @@ public class FieldLabel extends VBox {
                 // Add the matched text with a highlight style
                 Text highlight = createText(text.get().substring(pos, pos + filter.length()), "");
 
-
-
-
                 // cascara://organizer/CASC-00028C57
                 // TODO: create something in TextStyle for this
                 // TODO: Fix search highlight colors in Cascara Theme
@@ -130,7 +121,11 @@ public class FieldLabel extends VBox {
             }
         }
 
-        getChildren().setAll(textFlow);
+        VBox box = new VBox(textFlow);
+        box.setMinHeight(VBox.USE_PREF_SIZE);
+        textFlow.setMinHeight(TextFlow.USE_PREF_SIZE);
+
+        getChildren().setAll(box);
     }
 
     private Text createText(String string, String cssClass) {

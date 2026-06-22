@@ -94,7 +94,7 @@ public class CascaraTable extends StackPane {
             tableView.getColumns().add(createColumn(columnMetadata));
         }
         if (onRemoveRowHandler != null) {
-            ColumnMetadata deleteColumn = new ColumnMetadata(DELETE_BUTTON, "", null, null, null, col -> new TableCell<>() {
+            ColumnMetadata deleteColumn = new ColumnMetadata(DELETE_BUTTON, "", null, null, col -> new TableCell<>() {
                 private final Button delBtn = new Button("×");
                 {
 

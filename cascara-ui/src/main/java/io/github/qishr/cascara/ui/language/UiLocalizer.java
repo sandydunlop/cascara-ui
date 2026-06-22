@@ -2,6 +2,7 @@ package io.github.qishr.cascara.ui.language;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.Bidi;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
@@ -16,11 +17,13 @@ import io.github.qishr.cascara.lang.yaml.processor.YamlSerializer;
 import io.github.qishr.cascara.ui.language.detect.HybridLocaleDetector;
 import io.github.qishr.cascara.ui.option.Option;
 import io.github.qishr.cascara.ui.option.OptionProvider;
-
+import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.NodeOrientation;
 
 public class UiLocalizer implements ObservableLocalizer {
     private static final Reporter REPORTER = GlobalReporter.forClass(UiLocalizer.class);
@@ -33,7 +36,7 @@ public class UiLocalizer implements ObservableLocalizer {
     private static final Locale fallbackLocale = Locale.forLanguageTag(fallbackLanguageTag);
 
 
-    private static final LanguageOption systemLanguageOption = new LanguageOption(AUTOMATIC, "title.system");
+    private static final LanguageOption systemLanguageOption = new LanguageOption(AUTOMATIC);
 
     private final LanguageOptionProvider languageOptionProvider;
 
@@ -56,8 +59,12 @@ public class UiLocalizer implements ObservableLocalizer {
 
     public UiLocalizer() {
         languageOptionProvider = new LanguageOptionProvider();
+        OptionProviderRegistry.register(languageOptionProvider);
         languageOptions.add(systemLanguageOption);
         setActiveLanguage(AUTOMATIC);
+        Platform.runLater(() -> {
+            Localization.bind(systemLanguageOption.optionTextProperty(), "title.system");
+        });
     }
 
     public OptionProvider getLanguageOptionProvider() {
@@ -74,8 +81,24 @@ public class UiLocalizer implements ObservableLocalizer {
         return translationsByLanguage.containsKey(languageTag);
     }
 
+    // @Override
+    // public boolean hasKey(String key) {
+    //     return null == get(key);
+    // }
+
     public ReadOnlyObjectWrapper<LanguageOption> activeLanguageOptionProperty() {
         return activeLanguageOption;
+    }
+
+    public NodeOrientation getDirection() {
+        return isRTL() ? NodeOrientation.RIGHT_TO_LEFT : NodeOrientation.LEFT_TO_RIGHT;
+    }
+
+    public boolean isRTL() {
+        Locale locale = activeLocale.get();
+        String displayLanguage = locale.getDisplayLanguage(locale);
+        Bidi bidi = new Bidi(displayLanguage, Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT);
+        return !bidi.isLeftToRight();
     }
 
     public LanguageOption getActiveLanguageOption() {
@@ -170,6 +193,21 @@ public class UiLocalizer implements ObservableLocalizer {
         } catch (Exception e) {
             REPORTER.error(e, GenericDiagnosticCode.ERROR, "Failed to load translations: " + e.getMessage());
             return false;
+        }
+    }
+
+    /// {@inheritDoc}
+    @Override
+    public String formatWithDefault(String defaultText, String key, Object... args) {
+        String pattern = getPattern(key);
+        if (pattern == null) {
+            return defaultText == null ? key : defaultText;
+        }
+        try {
+            return MessageFormat.format(pattern, args);
+        } catch (IllegalArgumentException e) {
+            REPORTER.error(e, GenericDiagnosticCode.MESSAGE_FORMATTING_ERROR, key, pattern);
+            return "!!" + defaultText == null ? key : defaultText;
         }
     }
 

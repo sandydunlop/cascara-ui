@@ -20,7 +20,7 @@ public class VariationOptionProvider extends AbstractOptionProvider {
 
     @Override
     public void initialize() {
-        this.activeOption = ThemeEngine.instance().activeVariationOptionProperty();
+        this.activeOption = ThemeEngine.activeVariationOptionProperty();
     }
 
     @Override

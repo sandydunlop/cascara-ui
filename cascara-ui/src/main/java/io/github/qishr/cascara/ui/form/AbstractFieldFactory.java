@@ -7,7 +7,6 @@ import java.util.function.Consumer;
 
 import io.github.qishr.cascara.common.service.ServiceProviderLayer;
 import io.github.qishr.cascara.ui.api.data.DataProvider;
-import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.render.RenderDispatcher;
 import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
@@ -30,15 +29,15 @@ public abstract class AbstractFieldFactory {
     protected Consumer<Boolean> onChangeFieldValue;
 
     protected DataProvider dataProvider;
-    protected OptionProviderRegistry optionProviderRegistry;
-    protected RendererFactory rendererFactory;
-    protected RendererAllocator rendererAllocator;
 
-    protected AbstractFieldFactory(ServiceProviderLayer splCtx) {
-        if (splCtx == null) {
-            splCtx = ServiceProviderLayer.getRootLayer();
+    protected final RendererFactory rendererFactory;
+    protected final RendererAllocator rendererAllocator;
+
+    protected AbstractFieldFactory(ServiceProviderLayer spl) {
+        if (spl == null) {
+            spl = ServiceProviderLayer.getRootLayer();
         }
-        rendererFactory = new RendererFactory(splCtx);
+        rendererFactory = new RendererFactory(spl);
         rendererAllocator = new RendererAllocator(rendererFactory);
     }
 
@@ -47,7 +46,6 @@ public abstract class AbstractFieldFactory {
     public void setDataProvider(DataProvider dataProvider) { this.dataProvider = dataProvider; }
     public void setOnChangeFieldValue(Consumer<Boolean> handler) { this.onChangeFieldValue = handler; }
     public void setOnRefreshForm(Runnable handler) { this.onRefreshForm = handler; }
-    public void setOptionProviderRegistry(OptionProviderRegistry dataProvider) { this.optionProviderRegistry = dataProvider; }
 
 
     protected ViewAndControl createControl(FieldMetadata meta, Observable data) {

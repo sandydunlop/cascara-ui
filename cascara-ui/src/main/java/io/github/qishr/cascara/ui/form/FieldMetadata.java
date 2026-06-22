@@ -40,8 +40,7 @@ public class FieldMetadata {
     private boolean hidden = false;
     private boolean displayToggle = false;
     private String providerParameter = null;
-    private final OptionProvider optionProvider;
-    private final OptionProviderRegistry optionProviderRegistry;
+    private OptionProvider optionProvider;
     private final List<String> enumValues;
     private final String contentType;
     private SchemaNode itemsSchema;
@@ -73,12 +72,9 @@ public class FieldMetadata {
         public SchemaNode getSchema() { return schema; }
     }
 
-    public FieldMetadata(String fieldName, SchemaNode fieldSchema,
-                OptionProviderRegistry optionProviderRegistry,
-                RendererFactory rendererFactory) {
+    public FieldMetadata(String fieldName, SchemaNode fieldSchema, RendererFactory rendererFactory) {
         this. fieldSchema = fieldSchema;
         this.fieldName.set(fieldName);
-        this.optionProviderRegistry = optionProviderRegistry;
         this.rendererFactory = rendererFactory;
         String optionProviderId = null;
 
@@ -90,7 +86,6 @@ public class FieldMetadata {
             schemaType = SchemaType.STRING;
             format = null;
             providerParameter = null;
-            // scalarRenderer = null;
             enumValues = null;
             contentType = null;
         } else {
@@ -151,8 +146,8 @@ public class FieldMetadata {
             }
         }
 
-        if (optionProviderRegistry != null && optionProviderId  != null) {
-            optionProvider = optionProviderRegistry.getOptionProvider(optionProviderId);
+        if (optionProviderId != null) {
+            optionProvider = OptionProviderRegistry.get(optionProviderId);
         } else {
             optionProvider = null;
         }
@@ -176,6 +171,7 @@ public class FieldMetadata {
     public void setOnChange(Runnable onChange) { this.onChange = onChange; }
     public FieldMetadata setAllowEdit(boolean v) { allowEdit = v; return this; }
     public void setTitle(String v) { title.set(v); }
+    public void setOptionProvider(OptionProvider v) { optionProvider = v; }
 
     public boolean allowEdit() { return allowEdit; }
     public boolean allowDelete() { return allowDelete; }
@@ -196,7 +192,6 @@ public class FieldMetadata {
     public Runnable getOnChange() { return onChange; }
     public String getTitle() { return title.get(); }
 
-    public OptionProviderRegistry getOptionProviderRegistry() { return optionProviderRegistry; }
     public RendererFactory getRendererFactory() { return rendererFactory; }
 
     public boolean isHidden() { return hidden; }

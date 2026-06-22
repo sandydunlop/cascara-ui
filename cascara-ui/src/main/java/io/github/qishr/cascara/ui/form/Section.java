@@ -1,20 +1,29 @@
 package io.github.qishr.cascara.ui.form;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 public class Section extends AbstractFormComponent {
 
     private Label arrow = new Label("▼ ");
     private HBox collapsibleArea = null;
 
+    public Section() {
+        this(null);
+    }
+
     public Section(FieldLabel title) {
         super();
         this.title = title;
         setPadding(new Insets(4, 4, 4, 4));
+        HBox.setHgrow(this, Priority.ALWAYS);
     }
 
     public Section(FieldLabel title, int depth) {
@@ -33,11 +42,17 @@ public class Section extends AbstractFormComponent {
     @Override
     protected void performLayout() {
         title.setHeading(true);
+
+        // TODO: This was in the old code. Make it work again.
         // title.getStyleClass().add(StucturalEditorStyle.CATEGORY_HEADING);
+
+        List<Node> nodes = new ArrayList<>();
 
         if (collapsibleArea == null || collapsibleArea.getChildren().isEmpty()) {
             getChildren().setAll(title);
-
+            if (description != null) {
+                getChildren().setAll(description);
+            }
         } else {
             HBox headerArea = new HBox();
 
@@ -56,8 +71,14 @@ public class Section extends AbstractFormComponent {
 
             collapsibleArea.setSpacing(8);
             collapsibleArea.setPadding(new Insets(16, 4 ,0, 32));
-            getChildren().setAll(headerArea, collapsibleArea);
+
+            nodes.add(headerArea);
+            if (description != null) {
+                getChildren().setAll(description);
+            }
+            nodes.add(collapsibleArea);
         }
+        getChildren().setAll(nodes);
     }
 
 

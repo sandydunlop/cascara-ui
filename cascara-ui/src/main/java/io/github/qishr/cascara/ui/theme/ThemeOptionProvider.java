@@ -33,7 +33,7 @@ public class ThemeOptionProvider extends AbstractOptionProvider implements AutoC
 
     private final ObservableSet<StringOption> cascThemeSet = FXCollections.observableSet();
     private SetProperty<StringOption> cascThemes = new SimpleSetProperty<>(cascThemeSet);
-    private final StringOption defaultTheme = new SimpleStringOption("default", "Default");
+    private final StringOption defaultTheme = new SimpleStringOption("default", "Default", "title.default");
 
     private final ObservableSet<StringOption> vsixThemeSet = FXCollections.observableSet();
     private final SetProperty<StringOption> vsixThemes = new SimpleSetProperty<>(vsixThemeSet);
@@ -47,7 +47,7 @@ public class ThemeOptionProvider extends AbstractOptionProvider implements AutoC
     @Override
     public void initialize() {
         try {
-            this.activeOption = ThemeEngine.instance().activeThemeOptionProperty();
+            this.activeOption = ThemeEngine.activeThemeOptionProperty();
             if (!Files.isDirectory(themesDir)) {
                 Files.createDirectories(themesDir);
             }

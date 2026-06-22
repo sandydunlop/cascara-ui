@@ -10,11 +10,11 @@ import javafx.beans.property.ObjectProperty;
 @SchemaDefinition
 public class SampleData extends ObservableObject {
 
-    @SchemaProperty(enumKey = "sample-enum")
+    @SchemaProperty(titleKey = "title.sample-enum", descriptionKey = "text.sample-description", enumKey = "sample-enum")
     @StringConstraint(options = {"ONE", "TWO", "THREE"})
     public ObjectProperty<SampleEnum> sampleEnum;
 
-    @SchemaProperty
+    @SchemaProperty(titleKey = "title.sample-text", descriptionKey = "text.sample-description")
     public ObjectProperty<String> sampleText;
 
     @SchemaProperty

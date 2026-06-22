@@ -11,10 +11,10 @@ import io.github.qishr.cascara.ui.control.CascaraTable;
 import io.github.qishr.cascara.ui.data.ColumnMetadata;
 import io.github.qishr.cascara.ui.form.FieldMetadata;
 import io.github.qishr.cascara.ui.form.FieldMetadata.ColumnMeta;
-import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.render.AbstractArrayRenderer;
 import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -33,7 +33,6 @@ public class TableRenderer extends AbstractArrayRenderer implements ArrayEditorR
 	@Override
     public Node render(Labeled view, @SuppressWarnings("rawtypes") ObservableList list, DataProvider dataProvider, FieldMetadata tableMeta) {
 
-        OptionProviderRegistry optionProviderRegistry = tableMeta.getOptionProviderRegistry();
         RendererFactory rendererFactory = tableMeta.getRendererFactory();
         RendererAllocator rendererAllocator = new RendererAllocator(rendererFactory);
         this.tableMeta = tableMeta;
@@ -66,7 +65,7 @@ public class TableRenderer extends AbstractArrayRenderer implements ArrayEditorR
             // Hidden columns (TODO: Make this optional)
             boolean isIdField = columnName.toLowerCase().equals("id");
 
-            ColumnMetadata columnMeta = new ColumnMetadata(columnName, columnTitle, columnSchema, optionProviderRegistry, rendererFactory);
+            ColumnMetadata columnMeta = new ColumnMetadata(columnName, columnTitle, columnSchema, rendererFactory);
             columnMeta.setRenderers(rendererAllocator.allocate(columnMeta));
 
             if (columnMeta.isHidden() || isIdField) {
@@ -116,6 +115,10 @@ public class TableRenderer extends AbstractArrayRenderer implements ArrayEditorR
         table.setColumnMetadata(columns);
         table.setDataSource(list);
         // return layout;
+
+        // VBox.setVgrow(layout, Priority.ALWAYS);
+        // VBox.setVgrow(view, Priority.ALWAYS);
+        // VBox.setVgrow(table, Priority.ALWAYS);
 
         view.setGraphic(layout);
         view.setText(null);

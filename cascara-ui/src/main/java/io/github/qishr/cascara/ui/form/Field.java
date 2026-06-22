@@ -9,6 +9,8 @@ import io.github.qishr.cascara.common.diagnostic.LocalizableRuntimeException;
 import io.github.qishr.cascara.common.diagnostic.code.GenericDiagnosticCode;
 import io.github.qishr.cascara.schema.structure.SchemaNode;
 import io.github.qishr.cascara.schema.util.ValidationResult;
+import io.github.qishr.cascara.ui.control.OptionChooser;
+import io.github.qishr.cascara.ui.option.OptionProvider;
 import io.github.qishr.cascara.ui.style.custom.FormStyle;
 
 import javafx.beans.Observable;
@@ -22,16 +24,22 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 
 public class Field extends AbstractFormComponent {
-    protected FieldMetadata metadata;
 
-    protected ObjectProperty<?> scalarData;
-    protected ObservableList<?> arrayData;
-
+    private FieldMetadata metadata;
     private FieldValidator onValidate;
+    private ObjectProperty<?> scalarData;
+    private ObservableList<?> arrayData;
 
-    protected ViewAndControl inputControl;
+    private boolean expandControl;
+    private LabelPosition labelPosition = LabelPosition.BESIDE;
+    private int verticalSpacing = 3;
+    private int horizontalSpacing = 8;
+
+    private ViewAndControl inputControl;
     private Label errorLabel;
 
     @SuppressWarnings("unchecked")
@@ -40,7 +48,6 @@ public class Field extends AbstractFormComponent {
         this.inputControl = inputControl;
         this.metadata = metadata;
 
-        setSpacing(3);
         setPadding(new Insets(4));
 
         if (inputControl == null || inputControl.view() == null) {
@@ -63,73 +70,42 @@ public class Field extends AbstractFormComponent {
         } else {
             System.out.println("ERROR");
         }
-
         performLayout();
     }
 
-    @Override
-    protected void onTextChanged() {
-        applyValidationStyle();
-
-        // Content highlighting
-        applyHighlighting();
+    public Field setExpandControl(boolean v) {
+        expandControl = v;
+        performLayout();
+        return this;
     }
 
-    @Override
-    protected void performLayout() {
-        List<Node> nodes = new ArrayList<>();
-
-        if (title != null) {
-            nodes.add(title);
-        }
-
-        if (inputControl.view() != null) {
-            if (getInputControl() instanceof CheckBox  && description != null) {
-                HBox hbox = new HBox(inputControl.view(), description);
-                hbox.setSpacing(8);
-                nodes.add(hbox);
-            } else {
-                if (description != null) {
-                    nodes.add(description);
-                }
-                nodes.add(inputControl.view());
-            }
-        }
-
-        if (errorLabel != null) {
-            nodes.add(errorLabel);
-        }
-
-        if (nodes.isEmpty()) {
-            getChildren().clear();
-        } else {
-            getChildren().setAll(nodes);
-        }
+    public Field setLabelPosition(LabelPosition v) {
+        labelPosition = v;
+        performLayout();
+        return this;
     }
 
-    protected void applyHighlighting() {
-        boolean isMatch = false;
-        if (scalarData != null && scalarData.get() != null) {
-            String text = scalarData.get().toString();
-            if (text != null) {
-                String filter = getQuery();
-                if (filter != null && !filter.isEmpty() && text.toLowerCase().contains(filter.toLowerCase())) {
-                    isMatch = true;
-                }
-            }
+    public Field setHorizontalSpacing(int v) {
+        horizontalSpacing = v;
+        performLayout();
+        return this;
+    }
+
+    public Field setVerticalSpacing(int v) {
+        verticalSpacing = v;
+        performLayout();
+        return this;
+    }
+
+    public Field setOptionProvider(OptionProvider v) {
+        if (inputControl != null && inputControl.control() instanceof OptionChooser chooser) {
+            chooser.setOptionProvider(v);
         }
 
-        // TODO: Highlighting of search matches in input controls
-        if (getInputControl() instanceof Control) {
-            if (isMatch) {
-                // node.getStyleClass().add(TextInputStyle.SEARCH_MATCH);
-                // Border border = Border.stroke(Paint.valueOf("aqua"));
-                // node.setBorder(border);
-            } else {
-                // node.getStyleClass().remove(TextInputStyle.SEARCH_MATCH);
-                // node.setBorder(Border.EMPTY);
-            }
-        }
+        // TODO Instead of setting things in multiple places, Field and FieldMetadata should use properties.
+        metadata.setOptionProvider(v);
+
+        return this;
     }
 
     public FieldLabel getLabel() {
@@ -140,9 +116,9 @@ public class Field extends AbstractFormComponent {
         super.setTitle(label);
     }
 
-    //
-    // Arrays
-    //
+    public SchemaNode getSchema() {
+        return metadata == null ? null : metadata.getSchema();
+    }
 
     public void setAddRowHandler(Runnable addRow) {
         if (metadata != null) {
@@ -156,15 +132,12 @@ public class Field extends AbstractFormComponent {
         }
     }
 
-    //
-    // Meta
-    //
-
-    public StringProperty queryProperty() { return query; }
+    public StringProperty queryProperty() {
+        return query;
+    }
 
     public Node getInputControl() {
-        if (inputControl == null) return null;
-        return inputControl.control();
+        return inputControl == null ? null : inputControl.control();
     }
 
     public FieldMetadata getMetadata() {
@@ -176,17 +149,114 @@ public class Field extends AbstractFormComponent {
     }
 
     public String getName() {
-        return metadata.getName();
+        return metadata == null ? null : metadata.getName();
     }
-
-    //
-    // Validation
-    //
 
     /// If onValidate is set, errorLabel is created.
     /// If it's unset, errorLabel will be null.
     public void setOnValidate(FieldValidator callback) {
         this.onValidate = callback;
+        configureValidation();
+        applyValidationStyle();
+    }
+
+    //
+    // Protected Methods
+    //
+
+    @Override
+    protected void onTextChanged() {
+        applyValidationStyle();
+
+        // Content highlighting
+        applyHighlighting();
+    }
+
+    @Override
+    protected void performLayout() {
+        setSpacing(verticalSpacing);
+
+        if (inputControl.view() == null) {
+            getChildren().setAll(new Label("ERROR"));
+            return;
+        }
+
+        List<Node> col = new ArrayList<>();
+
+        // This is statement is here because tables are bahving strangely.
+        // Fix it later.
+        if (metadata.isArrayField()) {
+            if (title != null) {
+                col.add(title);
+            }
+            if (description != null) {
+                col.add(description);
+            }
+            if (inputControl.view() != null) {
+                col.add(inputControl.view());
+            }
+        } else {
+            List<Node> row = new ArrayList<>();
+
+            // In this context, `title` is the Field label
+            if (title != null) {
+                if (labelPosition == LabelPosition.ABOVE) {
+                    col.add(title);
+                }
+                if (labelPosition == LabelPosition.BESIDE) {
+                    row.add(title);
+                    if (!expandControl) {
+                        // Add a spacer so that if the Field is set to expand, the control doesn't have to.
+                        Region spacer = new Region();
+                        HBox.setHgrow(spacer, Priority.ALWAYS);
+                        row.add(spacer);
+                    }
+                }
+            }
+
+            if (description == null) {
+                row.add(inputControl.view());
+            } else {
+                if (getInputControl() instanceof CheckBox checkBox) {
+                    row.add(inputControl.control());
+                    row.add(description);
+                    description.setOnMouseClicked(click -> {
+                        checkBox.setSelected(!checkBox.isSelected());
+                    });
+                } else {
+                    col.add(description);
+                    row.add(inputControl.view());
+                }
+            }
+
+            if (expandControl) {
+                HBox.setHgrow(inputControl.view(), Priority.ALWAYS);
+            }
+
+            if (!row.isEmpty()) {
+                HBox rowContainer = new HBox(horizontalSpacing);
+                rowContainer.getChildren().setAll(row);
+                rowContainer.setMinHeight(10);
+                col.add(rowContainer);
+            }
+
+            if (errorLabel != null) {
+                col.add(errorLabel);
+            }
+        }
+
+        if (col.isEmpty()) {
+            getChildren().clear();
+        } else {
+            getChildren().setAll(col);
+        }
+    }
+
+    //
+    // Private Methods
+    //
+
+    private void configureValidation() {
         if (onValidate == null) {
             if (errorLabel != null) {
                 errorLabel = null;
@@ -199,7 +269,6 @@ public class Field extends AbstractFormComponent {
                 errorLabel.setWrapText(true);
             }
         }
-        applyValidationStyle();
     }
 
     private void applyValidationStyle() {
@@ -225,5 +294,28 @@ public class Field extends AbstractFormComponent {
         }
     }
 
+    private void applyHighlighting() {
+        boolean isMatch = false;
+        if (scalarData != null && scalarData.get() != null) {
+            String text = scalarData.get().toString();
+            if (text != null) {
+                String filter = getQuery();
+                if (filter != null && !filter.isEmpty() && text.toLowerCase().contains(filter.toLowerCase())) {
+                    isMatch = true;
+                }
+            }
+        }
 
+        // TODO: Highlighting of search matches in input controls
+        if (getInputControl() instanceof Control) {
+            if (isMatch) {
+                // node.getStyleClass().add(TextInputStyle.SEARCH_MATCH);
+                // Border border = Border.stroke(Paint.valueOf("aqua"));
+                // node.setBorder(border);
+            } else {
+                // node.getStyleClass().remove(TextInputStyle.SEARCH_MATCH);
+                // node.setBorder(Border.EMPTY);
+            }
+        }
+    }
 }

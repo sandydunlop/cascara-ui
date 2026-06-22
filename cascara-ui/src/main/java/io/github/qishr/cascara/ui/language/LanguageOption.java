@@ -7,8 +7,9 @@ import io.github.qishr.cascara.ui.option.SimpleStringOption;
 public class LanguageOption extends SimpleStringOption {
     private Locale locale;
 
-    public LanguageOption(String systemDisplayName, String translationKey) {
-        super("system", systemDisplayName, translationKey);
+    public LanguageOption(String systemDisplayName) {
+        // super("system", systemDisplayName, translationKey);
+        super("system", systemDisplayName);
     }
 
     public LanguageOption(Locale locale, String localizedName) {

@@ -7,6 +7,7 @@ import io.github.qishr.cascara.common.diagnostic.Reporter;
 import io.github.qishr.cascara.common.diagnostic.code.GenericDiagnosticCode;
 import io.github.qishr.cascara.common.service.ServiceProviderLayer;
 import io.github.qishr.cascara.schema.Schema;
+import io.github.qishr.cascara.schema.SchemaType;
 import io.github.qishr.cascara.schema.structure.SchemaNode;
 import io.github.qishr.cascara.ui.api.UiDiagnosticCode;
 import io.github.qishr.cascara.ui.api.data.ObservableTableData;
@@ -63,13 +64,14 @@ public class ObjectFieldFactory extends AbstractFieldFactory {
     }
 
     public Field createLabeledField(String fieldName) throws UiDataException {
-        SchemaNode fieldSchema = getFieldSchema(fieldName);
+        SchemaNode schema = getFieldSchema(fieldName);
 
+        // TODO: Why not call super.createLabeledField?
         Field field = createField(fieldName);
         if (field == null) { return null; }
 
         String labelText = fieldName;
-        String title = fieldSchema.getTitle();
+        String title = schema.getTitle();
         if (title != null && !title.isBlank()) {
             labelText = title;
         }
@@ -77,12 +79,25 @@ public class ObjectFieldFactory extends AbstractFieldFactory {
         FieldLabel label = new FieldLabel(labelText);
         label.setHeading(true);
 
-        String titleKey = Localization.getTitleKey(fieldSchema);
+        String titleKey = Localization.getTitleKey(schema);
         if (titleKey != null) {
             Localization.bind(label.textProperty(), titleKey);
         }
 
         field.setLabel(label);
+
+        if (schema.getType() == SchemaType.ARRAY) {
+            field.setLabelPosition(LabelPosition.ABOVE);
+        }
+
+
+        String description = schema.getDescription();
+        String descriptionKey = Localization.getDescriptionKey(schema);
+        if (description != null || descriptionKey != null) {
+            FieldLabel descriptionLabel = new FieldLabel(descriptionKey, description);
+            field.setDescription(descriptionLabel);
+        }
+
 
         // // TODO: Find a better way of doing this, eg fieldMets.hasDisplayToggle()
         // boolean isLarge = fieldSchema.getType() == SchemaType.ARRAY;
@@ -108,13 +123,13 @@ public class ObjectFieldFactory extends AbstractFieldFactory {
     }
 
     public Field createField(String fieldName) throws UiDataException {
-        SchemaNode fieldSchema = getFieldSchema(fieldName);
-        if (fieldSchema == null) {
+        SchemaNode schema = getFieldSchema(fieldName);
+        if (schema == null) {
             REPORTER.error(UiDiagnosticCode.SCHEMA_NOT_SPECIFIED);
             return null;
         }
 
-        FieldMetadata meta = new FieldMetadata(fieldName, fieldSchema, optionProviderRegistry, rendererFactory);
+        FieldMetadata meta = new FieldMetadata(fieldName, schema, rendererFactory);
         meta.setRenderers(rendererAllocator.allocate(meta));
 
         Observable data = object.getObservablesMap().get(fieldName);
@@ -123,7 +138,7 @@ public class ObjectFieldFactory extends AbstractFieldFactory {
         }
 
         if (meta.isArrayField() && data instanceof ObservableList list) {
-            if (!fieldSchema.isReadOnly()) {
+            if (!schema.isReadOnly()) {
                 meta.setRemoveRowHandler((row) -> {
                     list.remove(row);
                 });

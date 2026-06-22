@@ -2,6 +2,8 @@ package io.github.qishr.cascara.ui.form;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public abstract class AbstractFormComponent extends VBox {
@@ -12,12 +14,12 @@ public abstract class AbstractFormComponent extends VBox {
     protected InvalidationListener listener = i -> internalChange();
 
     protected AbstractFormComponent() {
+        HBox.setHgrow(this, Priority.ALWAYS);
         setSpacing(4);
         query.addListener(listener);
     }
 
     public void setTitle(FieldLabel title) {
-        System.out.println("Abs setTitle");
         if (this.title != null) {
             this.title.textProperty().removeListener(listener);
             this.title.queryProperty().bind(query);
@@ -31,7 +33,6 @@ public abstract class AbstractFormComponent extends VBox {
     }
 
     public void setDescription(FieldLabel description) {
-        System.out.println("Abs setDesc");
         if (this.description != null) {
             this.description.textProperty().removeListener(listener);
             this.description.queryProperty().unbind();
@@ -57,7 +58,6 @@ public abstract class AbstractFormComponent extends VBox {
     }
 
     protected void updateSearchHighlight() {
-        System.out.println("Debug: updateSearchHighlight");
         if (title != null) {
             title.formatText();
         }

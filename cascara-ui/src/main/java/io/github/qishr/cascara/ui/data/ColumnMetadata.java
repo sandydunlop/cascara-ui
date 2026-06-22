@@ -10,10 +10,10 @@ import io.github.qishr.cascara.ui.api.render.ScalarEditorRenderer;
 import io.github.qishr.cascara.ui.api.render.ScalarRenderer;
 import io.github.qishr.cascara.ui.form.FieldMetadata;
 import io.github.qishr.cascara.ui.language.Localization;
-import io.github.qishr.cascara.ui.option.OptionProviderRegistry;
 import io.github.qishr.cascara.ui.render.RendererAllocator;
 import io.github.qishr.cascara.ui.render.RendererFactory;
 import io.github.qishr.cascara.ui.render.Renderers;
+
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -32,26 +32,24 @@ public class ColumnMetadata extends FieldMetadata {
 
 
     public ColumnMetadata(String name, String title, SchemaNode schema,
-                OptionProviderRegistry optionProviderRegistry,
                 RendererFactory rendererFactory,
                 Callback<TableColumn<ObservableObject, Object>, TableCell<ObservableObject, Object>> cellFactory) {
 
-        super(name, schema, optionProviderRegistry, rendererFactory);
+        super(name, schema, rendererFactory);
         if (title != null) setTitle(title);
         setRenderers(new RendererAllocator(rendererFactory).allocate(this));
     }
 
     public ColumnMetadata(String name, String title, SchemaNode schema,
-                OptionProviderRegistry optionProviderRegistry,
                 RendererFactory rendererFactory) {
 
-        super(name, schema, optionProviderRegistry, rendererFactory);
+        super(name, schema, rendererFactory);
         if (title != null) setTitle(title);
         setRenderers(new RendererAllocator(rendererFactory).allocate(this));
     }
 
     public ColumnMetadata(String name, String title, Renderer renderer) {
-        super(name, null, null, null);
+        super(name, null, null);
         if (renderer instanceof ScalarEditorRenderer s) {
             this.setRenderers(new Renderers(null, s, null));
             this.allowEdit = true;
@@ -63,12 +61,12 @@ public class ColumnMetadata extends FieldMetadata {
     }
 
     public ColumnMetadata(String name, String title) {
-        super(name, null, null, null);
+        super(name, null, null);
         if (title != null) setTitle(title);
     }
 
     public ColumnMetadata(String name) {
-        super(name, null, null, null);
+        super(name, null, null);
     }
 
     public ColumnMetadata bindTitle(String key) {

@@ -1,5 +1,6 @@
 package io.github.qishr.cascara.ui.language;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -10,12 +11,17 @@ import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
 import io.github.qishr.cascara.schema.structure.SchemaNode;
 import io.github.qishr.cascara.schema.util.SchemaGenerator;
 import io.github.qishr.cascara.ui.form.FieldLabel;
-
+import io.github.qishr.cascara.ui.language.binding.FieldLabelLocalizationBinding;
+import io.github.qishr.cascara.ui.language.binding.LabeledLocalizationBinding;
+import io.github.qishr.cascara.ui.language.binding.LocalizationBinding;
+import io.github.qishr.cascara.ui.language.binding.PropertyLocalizationBinding;
+import io.github.qishr.cascara.ui.option.Option;
+import io.github.qishr.cascara.ui.option.OptionProvider;
 import javafx.beans.InvalidationListener;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.MenuItem;
@@ -35,6 +41,10 @@ public class Localization {
         localizer = customLocalizer != null ? customLocalizer : new UiLocalizer();
     }
 
+    public static void setActiveLanguage(Option option) {
+        localizer.setActiveLanguage(option);
+    }
+
     public static ReadOnlyObjectProperty<Locale> localeProperty() {
         return localizer.activeLocaleProperty();
     }
@@ -44,6 +54,18 @@ public class Localization {
         return localeProperty().get();
     }
 
+    public static OptionProvider getLanguageOptionProvider() {
+        return localizer.getLanguageOptionProvider();
+    }
+
+    public static void registerTranslations(InputStream translations) {
+        localizer.registerTranslations(translations);
+    }
+
+    //
+    // Formatting
+    //
+
     public static String format(String key, Object... details) {
         return localizer.format(key, details);
     }
@@ -52,36 +74,16 @@ public class Localization {
         return localizer.format(diagnosticCode, details);
     }
 
-    @SuppressWarnings("unchecked")
-    public static void bind(Property<?> target, String key, Object... args) {
-        InvalidationListener listener = null;
+    //
+    // Binding
+    //
 
-        if (target instanceof ObjectProperty objProp) {
-            listener = o -> {
-                objProp.set(localizer.format(key, args));
-            };
-        } else if (target instanceof StringProperty stringProp) {
-            listener = o -> {
-                stringProp.setValue(localizer.format(key, args));
-            };
-        }
-
-        if (listener != null) {
-            listener.invalidated(null); // Run immediate initial evaluation pass
-            if (localizer.activeLocaleProperty() != null) {
-                localizer.activeLocaleProperty().addListener(listener);
-            }
-        }
+    public static PropertyLocalizationBinding bind(Property<?> target, String key, Object... args) {
+        return new PropertyLocalizationBinding(localizer, target, key, args);
     }
 
-    public static void bind(Labeled target, String key, Object... args) {
-        InvalidationListener listener = o -> {
-            target.setText(localizer.format(key, args));
-        };
-        listener.invalidated(null);
-        if (localizer.activeLocaleProperty() != null) {
-            localizer.activeLocaleProperty().addListener(listener);
-        }
+    public static LocalizationBinding bind(Labeled target, String key, Object... args) {
+        return new LabeledLocalizationBinding(localizer, target, key, args);
     }
 
     public static void bind(TextField target, String key, Object... args) {
@@ -118,14 +120,24 @@ public class Localization {
         }
     }
 
-    // TODO...
-    public static void bind(FieldLabel target, String key, Object... args) {
-        InvalidationListener listener = o -> target.setText(localizer.format(key, args));
+    public static FieldLabelLocalizationBinding bind(FieldLabel target, String key, Object... args) {
+        return new FieldLabelLocalizationBinding(localizer, target, key, args);
+    }
+
+    public static void bindDirection(Node target) {
+        InvalidationListener listener = o -> target.setNodeOrientation(localizer.getDirection());
         listener.invalidated(null);
         if (localizer.activeLocaleProperty() != null) {
             localizer.activeLocaleProperty().addListener(listener);
         }
+    }
 
+    public static void bindDirection(Scene target) {
+        InvalidationListener listener = o -> target.setNodeOrientation(localizer.getDirection());
+        listener.invalidated(null);
+        if (localizer.activeLocaleProperty() != null) {
+            localizer.activeLocaleProperty().addListener(listener);
+        }
     }
 
     public static void bindLocale(DatePicker picker) {
@@ -156,8 +168,6 @@ public class Localization {
     // Schema Translation
     //
 
-    // cascara://organizer/CASC-00028C57
-    // TODO: %key% format
     public static String getTitle(SchemaNode schema) {
         if (schema == null) return null;
         String titleKey = getTitleKey(schema);
