@@ -115,10 +115,14 @@ public class ThemeEngine {
         if (instance == null) {
             instance = new ThemeEngine();
             String resPath = "cascara-theme.casc";
-            BufferedReader reader = new BufferedReader(new InputStreamReader(ThemeEngine.class.getResourceAsStream(resPath), StandardCharsets.UTF_8));
-            String yaml = reader.lines().collect(Collectors.joining("\n"));
-            instance.defaultTheme = new CascaraTheme(yaml);
-            setTheme(instance.defaultTheme);
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ThemeEngine.class.getResourceAsStream(resPath), StandardCharsets.UTF_8));
+                String yaml = reader.lines().collect(Collectors.joining("\n"));
+                instance.defaultTheme = new CascaraTheme(yaml);
+                setTheme(instance.defaultTheme);
+            } catch(Exception e) {
+                throw new UiException(e, UiDiagnosticCode.LOAD_DEFAULT_FAILURE);
+            }
         }
         return instance;
     }
@@ -205,7 +209,7 @@ public class ThemeEngine {
     public static void setTheme(CascaraTheme theme) {
         ThemeEngine instance = instance();
         if (theme == null) {
-            throw new UiException(GenericDiagnosticCode.UNEXPECTED_NULL, "CascaraTheme");
+            throw new UiException(GenericDiagnosticCode.UNEXPECTED_NULL_PARAMETER, "ThemeEngine.setTheme", "theme");
         }
         instance.activeTheme.set(theme);
         Variation variation = theme.getVariations().getFirst();

@@ -11,26 +11,42 @@ public class ThemeVariationLoader {
         Variation variation = factory.createVariation();
         variation.setName(variationNode.getString("name"));
         variation.setPath(variationNode.getString("path"));
-        for (YamlMapEntryNode entry : variationNode.getMap("baseColors").getEntries()) {
-            ColorDefinition cd = loadDefinition(entry);
-            variation.getBaseColors().put(cd.getId(), cd);
+
+        if (variationNode.getMap("baseColors") instanceof YamlMapNode map) {
+            for (YamlMapEntryNode entry : map.getEntries()) {
+                ColorDefinition cd = loadDefinition(entry);
+                variation.getBaseColors().put(cd.getId(), cd);
+            }
         }
-        for (YamlMapEntryNode entry : variationNode.getMap("transforms").getEntries()) {
-            ColorDefinition cd = loadDefinition(entry);
-            variation.getTransformDefinitions().put(cd.getId(), cd);
+
+        if (variationNode.getMap("transforms") instanceof YamlMapNode map) {
+            for (YamlMapEntryNode entry : map.getEntries()) {
+                ColorDefinition cd = loadDefinition(entry);
+                variation.getTransformDefinitions().put(cd.getId(), cd);
+            }
         }
-        for (YamlMapEntryNode entry : variationNode.getMap("paletteColors").getEntries()) {
-            ColorDefinition cd = loadDefinition(entry);
-            variation.getPaletteColors().put(cd.getId(), cd);
+
+        if (variationNode.getMap("paletteColors") instanceof YamlMapNode map) {
+            for (YamlMapEntryNode entry : map.getEntries()) {
+                ColorDefinition cd = loadDefinition(entry);
+                variation.getPaletteColors().put(cd.getId(), cd);
+            }
         }
-        for (YamlMapEntryNode entry : variationNode.getMap("uiColors").getEntries()) {
-            ColorDefinition cd = loadDefinition(entry);
-            variation.getUiColors().put(cd.getId(), cd);
+
+        if (variationNode.getMap("uiColors") instanceof YamlMapNode map) {
+            for (YamlMapEntryNode entry : map.getEntries()) {
+                ColorDefinition cd = loadDefinition(entry);
+                variation.getUiColors().put(cd.getId(), cd);
+            }
         }
-        for (YamlMapEntryNode entry : variationNode.getMap("codeColors").getEntries()) {
-            ColorDefinition cd = loadDefinition(entry);
-            variation.getCodeColors().put(cd.getId(), cd);
+
+        if (variationNode.getMap("codeColors") instanceof YamlMapNode map) {
+            for (YamlMapEntryNode entry : map.getEntries()) {
+                ColorDefinition cd = loadDefinition(entry);
+                variation.getCodeColors().put(cd.getId(), cd);
+            }
         }
+
         return variation;
     }
 

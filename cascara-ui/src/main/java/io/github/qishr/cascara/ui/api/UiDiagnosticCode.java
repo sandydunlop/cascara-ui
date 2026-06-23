@@ -21,7 +21,9 @@ public enum UiDiagnosticCode implements DiagnosticCode {
     // Controls
     ADD_UNSUPPORTED("UI-301", "createMenuItem is unsupported for root."),
 
-    INVALID_THEMING_TARGET("UI-403", "Target must be a Scene or a Parent.");
+    // Theme
+    INVALID_THEMING_TARGET("UI-401", "Target must be a Scene or a Parent."),
+    LOAD_DEFAULT_FAILURE("UI-402", "Failed to load default theme.");
 
 
     private final String code;
